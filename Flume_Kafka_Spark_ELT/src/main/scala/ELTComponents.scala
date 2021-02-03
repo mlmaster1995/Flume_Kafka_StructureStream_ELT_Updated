@@ -46,6 +46,9 @@ object ELTComponents extends Serializable {
         batchDF.write.format("jdbc").mode(mode).option("driver",driver).option("url",url).option("dbtable",s"$db.$table").option("user",user).option("password", password).save()
       }.outputMode("update").start().awaitTermination()
 
+    // write data to mongoDB
+    ???
+
   }
 }
 
