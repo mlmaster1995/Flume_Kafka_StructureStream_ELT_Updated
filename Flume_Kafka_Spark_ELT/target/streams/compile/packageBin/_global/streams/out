@@ -18,16 +18,12 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/PipelineUtils$$typecreator1$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toMySQL$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toMySQL$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	toConsole$toConsole$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toConsole$toConsole$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	WriterClasses.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/WriterClasses.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toHdfs$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toHdfs$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	WriterClasses$KafkaWriter.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/WriterClasses$KafkaWriter.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	toConsole$toConsole$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toConsole$toConsole$delayedInit$body.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toHiveMetaStore$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toHiveMetaStore$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toConsole$.class[0m

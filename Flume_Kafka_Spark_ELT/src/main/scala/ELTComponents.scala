@@ -36,6 +36,12 @@ object ELTComponents extends Serializable {
     def toHiveMetaStore(source:sql.DataFrame, hiveDataPath:String, checkpiontPath:String, format:String, mode:String):Unit=
       source.writeStream.format(format).outputMode(mode).option("path",hiveDataPath).option("checkpointLocation",checkpiontPath).start().awaitTermination()
 
+    // write data to hiveTable
+    def toHiveTable(source:sql.DataFrame, format:String, hiveTableMode:String, compression:String, database:String, table:String, partition:Int=1):Unit=
+      source.writeStream.foreachBatch({(batchDF: DataFrame, batchId: Long) =>
+        batchDF.coalesce(partition).write.format(format).mode(hiveTableMode).option("compression",compression).saveAsTable(s"$database.$table")
+      }).outputMode("update").start().awaitTermination()
+
     // write data stream to kafka
     def toKafka(source:sql.DataFrame, topic:String, servers:String, extract_func:Row=>String):Unit =
       source.writeStream.foreach(new KafkaWriter(topic, servers, extract_func)).start().awaitTermination()
@@ -47,7 +53,7 @@ object ELTComponents extends Serializable {
       }.outputMode("update").start().awaitTermination()
 
     // write data to mongoDB
-    ???
+
 
   }
 }

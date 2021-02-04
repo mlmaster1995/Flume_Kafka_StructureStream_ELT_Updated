@@ -1,16 +1,10 @@
-import PipelineUtils._
+import PipelineUtils.{extracFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
-object toConsole extends Serializable {
-    // build a session
+object toHiveTable extends Serializable with App {
     val spark = getSparkSession
-
-    // extract data
     val dataSource: sql.DataFrame = ELTComponents.extract(spark, extracFunc)
-
-    // transform data
     val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
-    // load data
-    ELTComponents.Load.toConsole(transformedSource, mode = "append")
+    ELTComponents.Load.toHiveTable(transformedSource,"parquet", "append", "snappy", "chrisy", "fromstream", partition = 1)
 }
