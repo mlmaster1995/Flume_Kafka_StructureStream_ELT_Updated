@@ -1,8 +1,7 @@
 import PipelineUtils.{extracFunc, getSparkSession, transformFunc}
-import com.mongodb.ReadPreference.primaryPreferred
 import org.apache.spark.sql
 
-object toMongoDB extends Serializable with App{
+object toMongoDB extends Serializable{
 
     // build a session
     val spark = getSparkSession

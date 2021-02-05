@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/src/main/scala/toMongoAtlas.scala:10:37: not found: value args[0m
-[0m[[0m[31merror[0m] [0m[0m    val envConfig = props.getConfig(args(0))[0m
-[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/src/main/scala/ELTComponents.scala:1:8: value MongoAtlasWriter is not a member of object WriterClasses[0m
+[0m[[0m[31merror[0m] [0m[0mimport WriterClasses.{KafkaWriter, MongoAtlasWriter}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -54,6 +54,4 @@ object PipelineUtils extends Serializable {
       s"${rowMap("st")}"
   }
 
-
-
 }

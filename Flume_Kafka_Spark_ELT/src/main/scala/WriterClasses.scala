@@ -1,6 +1,7 @@
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.spark.sql.{ForeachWriter, Row}
 
+
 import java.util.Properties
 
 object WriterClasses extends Serializable{
@@ -17,6 +18,4 @@ object WriterClasses extends Serializable{
     def process(row: Row) = producer.send(new ProducerRecord(topic, func(row)))
     def close(errorOrNull: Throwable) = producer.close
   }
-
-
 }
