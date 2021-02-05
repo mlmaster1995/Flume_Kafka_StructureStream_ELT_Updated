@@ -3,7 +3,7 @@ import org.apache.spark.sql.{ForeachWriter, Row}
 
 import java.util.Properties
 
-object WriterClasses extends Serializable {
+object WriterClasses extends Serializable{
 
   // write data to kafka
   class KafkaWriter (val topic:String, val servers:String, val func: Row=>String) extends ForeachWriter[Row] {
@@ -12,8 +12,11 @@ object WriterClasses extends Serializable {
     kafkaProperties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     kafkaProperties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     var producer: KafkaProducer[String, String] = _
+
     def open(partitionId: Long, epochId: Long) = {producer = new KafkaProducer(kafkaProperties); true}
     def process(row: Row) = producer.send(new ProducerRecord(topic, func(row)))
     def close(errorOrNull: Throwable) = producer.close
   }
+
+
 }

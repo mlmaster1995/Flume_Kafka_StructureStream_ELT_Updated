@@ -1,7 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/src/main/scala/ELTComponents.scala:45:47: overloaded method value foreachBatch with alternatives:[0m
-[0m[[0m[31merror[0m] [0m[0m  (function: org.apache.spark.api.java.function.VoidFunction2[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row],java.lang.Long])org.apache.spark.sql.streaming.DataStreamWriter[org.apache.spark.sql.Row] <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (function: (org.apache.spark.sql.Dataset[org.apache.spark.sql.Row], scala.Long) => Unit)org.apache.spark.sql.streaming.DataStreamWriter[org.apache.spark.sql.Row][0m
-[0m[[0m[31merror[0m] [0m[0m cannot be applied to ((org.apache.spark.sql.DataFrame, scala.Long) => org.apache.spark.sql.DataFrame)[0m
-[0m[[0m[31merror[0m] [0m[0m      source.writeStream.outputMode("append").foreachBatch { (batchDF: DataFrame, batchId: Long) =>[0m
-[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/src/main/scala/toMongoAtlas.scala:10:37: not found: value args[0m
+[0m[[0m[31merror[0m] [0m[0m    val envConfig = props.getConfig(args(0))[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

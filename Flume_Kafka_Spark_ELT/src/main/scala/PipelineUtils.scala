@@ -1,20 +1,11 @@
+import ApplicationProperties.kafkaBrokers
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql
 import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.spark.sql.functions.udf
 import org.apache.spark.sql.types.StringType
-import ApplicationProperties.kafkaBrokers
 
-
-
-/*
-- PipleineUtils Class
-- this class contains all the "user-defined" functions
-- user could define any sources and any functions related to ELT
-- Pipeline Class takes the user-defined functions to process data and writes to certain destination
-*/
 object PipelineUtils extends Serializable {
-
   /*
   - return a SparkSession class
   */
@@ -23,7 +14,9 @@ object PipelineUtils extends Serializable {
     Logger.getLogger("akka").setLevel(Level.OFF)
     SparkSession
       .builder()
-      .appName("eltPipline")
+      .appName("elg pipline")
+      .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/test.fromstream")
+      .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/test.fromstream")
       .master("local[*]")
       .enableHiveSupport()
       .getOrCreate()
@@ -54,7 +47,7 @@ object PipelineUtils extends Serializable {
 
 
   // user-define-function to extract value from a Row and this function only works with KafkaWriter class for vmstat data
-   val extractRowDataForKafkaWriter: Row=>String = (row:Row) =>{
+  val extractRowDataForKafkaWriter: Row=>String = (row:Row) =>{
     val rowMap: Map[String, AnyVal] = row.getValuesMap(row.schema.fieldNames)
     s"${rowMap("topic")}|${rowMap("time")}|${rowMap("r")}|${rowMap("b")}|${rowMap("swpd")}|${rowMap("buff")}|${rowMap("cache")}|${rowMap("si")}|" +
       s"${rowMap("so")}|${rowMap("bi")}|${rowMap("bo")}|${rowMap("in_val")}|${rowMap("cs")}|${rowMap("us")}|${rowMap("sy")}|${rowMap("id")}|${rowMap("wa")}|" +

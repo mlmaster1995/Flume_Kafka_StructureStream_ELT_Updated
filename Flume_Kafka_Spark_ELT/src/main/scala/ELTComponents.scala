@@ -1,4 +1,5 @@
-import WriterClasses.KafkaWriter
+import WriterClasses.{KafkaWriter}
+import com.mongodb.spark.sql.toMongoDataFrameWriterFunctions
 import org.apache.spark.sql
 import org.apache.spark.sql._
 
@@ -53,8 +54,15 @@ object ELTComponents extends Serializable {
       }.outputMode("update").start().awaitTermination()
 
     // write data to mongoDB
+    def toMongoD(source:sql.DataFrame):Unit=
+      source.writeStream.foreachBatch({ (batchDF: DataFrame, batchId: Long) =>
+        batchDF.write.mode("append").mongo()
+      }).outputMode("update").start().awaitTermination()
 
-
+    // write data to mongoAtlas
+    def toAtlas(source:sql.DataFrame):Unit={
+      source.writeStream.foreach(new MongoAtlasWriter(???)).start().awaitTermination()
+    }
   }
 }
 

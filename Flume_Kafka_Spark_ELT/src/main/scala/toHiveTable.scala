@@ -1,7 +1,7 @@
 import PipelineUtils.{extracFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
-object toHiveTable extends Serializable with App {
+object toHiveTable extends Serializable {
     val spark = getSparkSession
     val dataSource: sql.DataFrame = ELTComponents.extract(spark, extracFunc)
     val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)

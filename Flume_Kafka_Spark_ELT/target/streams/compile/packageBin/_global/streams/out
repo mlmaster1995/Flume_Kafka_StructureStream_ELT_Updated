@@ -1,4 +1,4 @@
-[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/flume_kafka_spark_elt_2.12-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/flume_kafka_spark_elt_2.12-3.0.1_0.1.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ELTComponents$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/ELTComponents$.class[0m
@@ -18,6 +18,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/PipelineUtils$$typecreator1$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toMySQL$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toMySQL$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	toMongoDB$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toMongoDB$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	WriterClasses.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/WriterClasses.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toHdfs$.class[0m
@@ -30,8 +32,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toConsole$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	PipelineUtils.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/PipelineUtils.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	toHiveTable$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toHiveTable$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	toMongoDB$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toMongoDB$delayedInit$body.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	ELTComponents.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/ELTComponents.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	toConsole.class[0m
@@ -48,6 +50,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/ELTComponents$Load$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	WriterClasses$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/WriterClasses$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	toMongoDB.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/toMongoDB.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	PipelineUtils$$typecreator2$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/Flume_Kafka_Spark_ELT/target/scala-2.12/classes/PipelineUtils$$typecreator2$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
