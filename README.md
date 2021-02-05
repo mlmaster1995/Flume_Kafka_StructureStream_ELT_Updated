@@ -14,7 +14,7 @@ of orignial pipeline. Totally 7 pipeline integrated into one project;
 
 ### Pipeline
 Pipelines are shown as the following image:
-![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107065754-230c2880-67ab-11eb-89d7-4831324244ed.jpeg)
+![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107066408-f1479180-67ab-11eb-89c7-ef5978a2878f.jpeg)
 
 The pipeline includes: 
 * vmstat Data => Flume => Kafka => Structured Stream => Console
