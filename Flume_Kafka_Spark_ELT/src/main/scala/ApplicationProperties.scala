@@ -1,13 +1,19 @@
 object ApplicationProperties extends Serializable {
 
-  val sparkProperties:Map[String, String] = Map(
+  type PropType = Map[String, String]
+
+  val sparkProperties: PropType = Map(
     "mode"-> "local",
     "name"-> "eltPipeline"
   )
 
-  val kafkaBrokers:String = "localhost:9092"
+    val kafkaProperties: PropType = Map(
+    "brokers"-> "localhost:9092",
+    "topic_I" -> "exec",
+    "topic_II" -> "toKafka",
+  )
 
-  val mySQLProperties:Map[String, String] =Map(
+  val mySQLProperties:PropType =Map(
     "url"-> "...",
     "driver"->"com.mysql.cj.jdbc.Driver",
     "username" -> "...",
@@ -17,6 +23,33 @@ object ApplicationProperties extends Serializable {
     "mode" -> "..."
   )
 
+  val consoleProperties:PropType = Map(
+    "mode"->"append"
+  )
+
+  val hdfsProperties:PropType =Map(
+    "hdfsPath"->"data/stream_data/",
+    "checkpointPath"->"checkpoint/",
+    "format" -> "parquet",
+    "mode"->"append",
+    "compressionType"->"snappy"
+  )
+
+  val hiveProperties:PropType=Map(
+    "warehousePath"->"user/hive/warehouse",
+    "checkpointPath"->"checkpoint/",
+    "format" -> "parquet",
+    "mode"->"append",
+    "compressionType" -> "snappy",
+    "database" ->"chrisy",
+    "table"->"fromStream",
+    "partitions"->"1"
+  )
+
+  val mongodbProperties:PropType=Map(
+    "mongoInputURI"->"mongodb://127.0.0.1/test.fromstream",
+    "mongoOutputURI" ->"mongodb://127.0.0.1/test.fromstream"
+  )
 
 
 }

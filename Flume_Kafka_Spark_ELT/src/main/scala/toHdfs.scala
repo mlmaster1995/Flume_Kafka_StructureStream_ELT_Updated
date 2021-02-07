@@ -1,3 +1,4 @@
+import ApplicationProperties.hdfsProperties
 import PipelineUtils.{extracFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
@@ -13,5 +14,6 @@ object toHdfs extends Serializable{
   val transformedSource:sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
   // load data
-  ELTComponents.Load.toHdfs(transformedSource,hdfsPath="stream_data/", checkpointPath="checkpoint/", format="parquet", mode="append", compressionType="snappy")
+  ELTComponents.Load.toHdfs(transformedSource,hdfsProperties("hdfsPath"), hdfsProperties("checkpointPath"),
+    hdfsProperties("format"), hdfsProperties("mode"), hdfsProperties("compressionType"))
 }

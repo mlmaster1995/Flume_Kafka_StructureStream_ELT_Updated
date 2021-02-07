@@ -1,3 +1,4 @@
+import ApplicationProperties.consoleProperties
 import PipelineUtils._
 import org.apache.spark.sql
 
@@ -13,7 +14,7 @@ object toConsole extends Serializable{
         val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
         // load data
-        ELTComponents.Load.toConsole(transformedSource, mode = "append")
+        ELTComponents.Load.toConsole(transformedSource, mode = consoleProperties("mode"))
 
 
 }

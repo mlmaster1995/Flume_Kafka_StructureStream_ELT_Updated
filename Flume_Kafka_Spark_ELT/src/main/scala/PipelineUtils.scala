@@ -1,4 +1,4 @@
-import ApplicationProperties.kafkaBrokers
+import ApplicationProperties.{kafkaProperties, mongodbProperties, sparkProperties}
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql
 import org.apache.spark.sql.{Row, SparkSession}
@@ -14,10 +14,10 @@ object PipelineUtils extends Serializable {
     Logger.getLogger("akka").setLevel(Level.OFF)
     SparkSession
       .builder()
-      .appName("elg pipline")
-      .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/test.fromstream")
-      .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/test.fromstream")
-      .master("local[*]")
+      .appName(s"${sparkProperties("name")}")
+      .config("spark.mongodb.input.uri", mongodbProperties("mongoInputURI"))
+      .config("spark.mongodb.output.uri",  mongodbProperties("mongoOutputURI"))
+      .master(s"${sparkProperties("mode")}")
       .enableHiveSupport()
       .getOrCreate()
   }
@@ -26,7 +26,8 @@ object PipelineUtils extends Serializable {
   - extract function define
   - user could specify any source and the function will return a spark dataframe
   */
-  val extracFunc:(SparkSession=>sql.DataFrame) = (session: SparkSession) => session.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaBrokers).option("subscribe", "exec").load()
+  val extracFunc:(SparkSession=>sql.DataFrame) = (session: SparkSession) =>
+    session.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaProperties("brokers")).option("subscribe", "exec").load()
 
   /*
   - transform function define

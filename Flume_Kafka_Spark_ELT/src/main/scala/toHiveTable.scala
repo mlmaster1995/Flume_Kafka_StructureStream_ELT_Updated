@@ -1,3 +1,4 @@
+import ApplicationProperties.hiveProperties
 import PipelineUtils.{extracFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
@@ -11,5 +12,6 @@ object toHiveTable extends Serializable {
     // transform data
     val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
-    ELTComponents.Load.toHiveTable(transformedSource,"parquet", "append", "snappy", "chrisy", "fromstream", partition = 1)
+    ELTComponents.Load.toHiveTable(transformedSource, hiveProperties("format"), hiveProperties("mode"),
+        hiveProperties("compressionType"), hiveProperties("database"), hiveProperties("table"), hiveProperties("partitions").toInt)
 }

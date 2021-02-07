@@ -1,3 +1,4 @@
+import ApplicationProperties.hiveProperties
 import PipelineUtils.{extracFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
@@ -13,6 +14,7 @@ object toHiveMetaStore extends Serializable{
   val transformedSource:sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
   // load data
-  ELTComponents.Load.toHiveMetaStore(transformedSource, "/apps/hive/warehouse/chrisy.db/streamhive", "checkpoint/", "parquet", "append")
+  ELTComponents.Load.toHiveMetaStore(transformedSource, hiveProperties("warehousePath"), hiveProperties("checkpointPath"),
+    hiveProperties("format"), hiveProperties("mode"))
 
 }
