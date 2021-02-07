@@ -1,6 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
-[0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
-[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 26 products, 11 sources, 7 libraries[0m
-[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/ApplicationProperties.scala, ${BASE}/src/main/scala/toKafka.scala, ${BASE}/src/main/scala/toMySQL.scala, ${BASE}/src/main/scala/ELTComponents.scala, ${BASE}/src/main/scala/toHdfs.scala, ${BASE}/src/main/scala/WriterClasses.scala, ${BASE}/src/main/scala/toConsole.scala, ${BASE}/src/main/scala/toMongoDB.scala, ${BASE}/src/main/scala/toHiveMetaStore.scala, ${BASE}/src/main/scala/toHiveTable.scala, ${BASE}/src/main/scala/PipelineUtils.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())[0m
-[0m[[0m[0mdebug[0m] [0m[0mNo changes[0m

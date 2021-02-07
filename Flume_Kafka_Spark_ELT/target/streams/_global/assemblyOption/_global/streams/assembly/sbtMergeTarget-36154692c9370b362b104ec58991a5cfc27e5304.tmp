@@ -1,3 +1,0 @@
-org.apache.spark.deploy.security.HadoopFSDelegationTokenProvider
-org.apache.spark.deploy.security.HBaseDelegationTokenProvider
-org.apache.spark.kafka010.KafkaDelegationTokenProvider

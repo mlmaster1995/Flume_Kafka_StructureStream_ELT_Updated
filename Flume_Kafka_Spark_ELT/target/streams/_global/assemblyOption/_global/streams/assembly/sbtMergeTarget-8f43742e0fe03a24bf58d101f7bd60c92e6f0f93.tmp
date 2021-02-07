@@ -1,2 +1,0 @@
-org.apache.spark.deploy.history.BasicEventFilterBuilder
-org.apache.spark.sql.execution.history.SQLEventFilterBuilder
