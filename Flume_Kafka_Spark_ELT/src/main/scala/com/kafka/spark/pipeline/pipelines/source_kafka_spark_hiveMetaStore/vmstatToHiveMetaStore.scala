@@ -1,13 +1,13 @@
-package com.kafka.spark.pipeline.pipelines.source_kafka_spark_console
+package com.kafka.spark.pipeline.pipelines.source_kafka_spark_hiveMetaStore
 
-import com.kafka.spark.pipeline.dev.ApplicationProperties.consoleProperties
+import com.kafka.spark.pipeline.dev.ApplicationProperties.hiveProperties
 import com.kafka.spark.pipeline.dev.ELTComponents
 import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
-object toConsole extends Serializable {
-
-  // build a session
+// write the stream to the metastore
+object vmstatToHiveMetaStore extends Serializable {
+  // build a spark session
   val spark = getSparkSession
 
   // extract data
@@ -17,7 +17,7 @@ object toConsole extends Serializable {
   val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
   // load data
-  ELTComponents.Load.toConsole(transformedSource, mode = consoleProperties("mode"))
-
+  ELTComponents.Load.toHiveMetaStore(transformedSource, hiveProperties("warehousePath"), hiveProperties("checkpointPath"),
+    hiveProperties("format"), hiveProperties("mode"))
 
 }

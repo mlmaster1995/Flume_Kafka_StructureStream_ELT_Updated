@@ -18,6 +18,7 @@ trait PipelineUtils extends Serializable{
   def extractRowDataForKafkaWriter (row: Row):String
 }
 
+// vmstat data pipelines utils
 case object vmstatPipeUtils extends Serializable with PipelineUtils {
 
   def getSparkSession: SparkSession= {
@@ -54,4 +55,15 @@ case object vmstatPipeUtils extends Serializable with PipelineUtils {
       s"${rowMap("st")}"
   }
 
+}
+
+case object twitterPipeUtils extends Serializable with PipelineUtils{
+  // user-define-function to return a SparkSession class
+  def getSparkSession:SparkSession = ???
+  // user-define-function to specify the extract function based on the source
+  def extractFunc(session: SparkSession):sql.DataFrame = ???
+  // user-define-function to specify the transform function based on the sink
+  def transformFunc (soruce: sql.DataFrame, session: SparkSession):sql.DataFrame = ???
+  // user-define-funciton to specify the extract function for kafka sink writer
+  def extractRowDataForKafkaWriter (row: Row):String = ???
 }

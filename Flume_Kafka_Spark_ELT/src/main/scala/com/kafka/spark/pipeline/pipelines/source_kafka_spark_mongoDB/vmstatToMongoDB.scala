@@ -1,13 +1,12 @@
-package com.kafka.spark.pipeline.pipelines.source_kafka_spark_hdfs
+package com.kafka.spark.pipeline.pipelines.source_kafka_spark_mongoDB
 
-import com.kafka.spark.pipeline.dev.ApplicationProperties.hdfsProperties
 import com.kafka.spark.pipeline.dev.ELTComponents
 import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
-// write the stream data to hdfs
-object toHdfs extends Serializable {
-  // build a spark session
+object vmstatToMongoDB extends Serializable {
+
+  // build a session
   val spark = getSparkSession
 
   // extract data
@@ -17,6 +16,6 @@ object toHdfs extends Serializable {
   val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
   // load data
-  ELTComponents.Load.toHdfs(transformedSource, hdfsProperties("hdfsPath"), hdfsProperties("checkpointPath"),
-    hdfsProperties("format"), hdfsProperties("mode"), hdfsProperties("compressionType"))
+  ELTComponents.Load.toMongoD(transformedSource)
+
 }

@@ -6,7 +6,7 @@ import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, extractRowData
 import org.apache.spark.sql
 
 // write data stream back to kafka with a different topic
-object toKafka extends Serializable {
+object vmstatToKafka extends Serializable {
   // build a spark session
   val spark = getSparkSession
 

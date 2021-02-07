@@ -5,7 +5,7 @@ import com.kafka.spark.pipeline.dev.ELTComponents
 import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
-object toHiveTable extends Serializable {
+object vmstatToHiveTable extends Serializable {
   // create a spark session
   val spark = getSparkSession
 

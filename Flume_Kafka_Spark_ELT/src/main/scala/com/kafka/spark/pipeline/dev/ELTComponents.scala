@@ -1,6 +1,6 @@
 package com.kafka.spark.pipeline.dev
 
-import com.kafka.spark.pipeline.dev.WriterClasses.KafkaWriter
+import com.kafka.spark.pipeline.dev.CustomSinkClasses.KafkaWriter
 import com.mongodb.spark.sql.toMongoDataFrameWriterFunctions
 import org.apache.spark.sql
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}

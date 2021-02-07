@@ -1,12 +1,12 @@
-package com.kafka.spark.pipeline.pipelines.source_kafka_spark_hiveMetaStore
+package com.kafka.spark.pipeline.pipelines.source_kafka_spark_hdfs
 
-import com.kafka.spark.pipeline.dev.ApplicationProperties.hiveProperties
+import com.kafka.spark.pipeline.dev.ApplicationProperties.hdfsProperties
 import com.kafka.spark.pipeline.dev.ELTComponents
 import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
-// write the stream to the metastore
-object toHiveMetaStore extends Serializable {
+// write the stream data to hdfs
+object vmstatToHdfs extends Serializable {
   // build a spark session
   val spark = getSparkSession
 
@@ -17,7 +17,6 @@ object toHiveMetaStore extends Serializable {
   val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
 
   // load data
-  ELTComponents.Load.toHiveMetaStore(transformedSource, hiveProperties("warehousePath"), hiveProperties("checkpointPath"),
-    hiveProperties("format"), hiveProperties("mode"))
-
+  ELTComponents.Load.toHdfs(transformedSource, hdfsProperties("hdfsPath"), hdfsProperties("checkpointPath"),
+    hdfsProperties("format"), hdfsProperties("mode"), hdfsProperties("compressionType"))
 }

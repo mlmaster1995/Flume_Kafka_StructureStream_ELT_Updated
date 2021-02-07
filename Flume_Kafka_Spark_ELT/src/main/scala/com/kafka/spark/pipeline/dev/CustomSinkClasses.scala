@@ -5,7 +5,7 @@ import org.apache.spark.sql.{ForeachWriter, Row}
 
 import java.util.Properties
 
-object WriterClasses extends Serializable {
+object CustomSinkClasses extends Serializable {
 
   // write data to kafka
   class KafkaWriter(val topic: String, val servers: String, val func: Row => String) extends ForeachWriter[Row] {
