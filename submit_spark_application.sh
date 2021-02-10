@@ -1,9 +1,9 @@
 #*********************************************************************#
-#                  Spark-submit Bash Scritpt				                  #
+#                  Spark-submit Bash Scritpt			      #
 # - to use this bash script the user needs to redefine the root path  #
 # - all the jar files are in the Jars folder in the git repo          #
 # - the applicaiton jar file name could be varied and                 #
-# "flume_kafka_spark_elt_2.12-3.0.1.jar" is from "sbt package"        #
+# - <jar-file-names-from-sbt> is from "sbt package"                   #
 #*********************************************************************#
 
 #! /usr/bin/bash
