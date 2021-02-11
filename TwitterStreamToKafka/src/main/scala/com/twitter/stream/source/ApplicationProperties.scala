@@ -10,4 +10,12 @@ object ApplicationProperties extends Serializable {
     "Access_token" -> "...",
     "Access_token_secret" -> "...",
   )
+
+
+  val kafkaProperties: PropType = Map(
+    "brokers" -> "localhost:9092",
+    "topic" -> "tweet",
+  )
+
+
 }

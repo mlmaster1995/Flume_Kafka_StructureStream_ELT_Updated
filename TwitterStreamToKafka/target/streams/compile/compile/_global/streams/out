@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/TwitterStreamToKafka/src/main/scala/com/twitter/stream/source/WriteToKafkaProducer.scala:4:8: value KafkaProducerWriter is not a member of object com.twitter.stream.source.TwitterStreamToKafkaProducer[0m
+[0m[[0m[31merror[0m] [0m[0mimport com.twitter.stream.source.TwitterStreamToKafkaProducer.KafkaProducerWriter[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
