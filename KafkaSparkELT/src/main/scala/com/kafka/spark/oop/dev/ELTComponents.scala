@@ -15,7 +15,7 @@ object ELTComponents extends Serializable {
    - Extract
    - extract function is a user-defined function in PipelineUtils
   */
-  def extract(session: SparkSession, extractFunc: (SparkSession) => sql.DataFrame): sql.DataFrame = extractFunc(session)
+  def extract(session: SparkSession, topic:String, extractFunc: (SparkSession, String) => sql.DataFrame): sql.DataFrame = extractFunc(session, topic)
 
   /*
    - Transform

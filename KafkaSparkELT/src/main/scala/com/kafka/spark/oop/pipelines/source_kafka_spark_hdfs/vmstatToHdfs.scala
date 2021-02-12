@@ -1,8 +1,8 @@
-package com.kafka.spark.pipeline.pipelines.source_kafka_spark_hdfs
+package com.kafka.spark.oop.pipelines.source_kafka_spark_hdfs
 
-import com.kafka.spark.pipeline.dev.ApplicationProperties.hdfsProperties
-import com.kafka.spark.pipeline.dev.ELTComponents
-import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
+import com.kafka.spark.oop.dev.ApplicationProperties.{hdfsProperties, kafkaProperties}
+import com.kafka.spark.oop.dev.ELTComponents
+import com.kafka.spark.oop.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
 // write the stream data to hdfs
@@ -11,7 +11,7 @@ object vmstatToHdfs extends Serializable {
   val spark = getSparkSession
 
   // extract data
-  val dataSource: sql.DataFrame = ELTComponents.extract(spark, extractFunc)
+  val dataSource: sql.DataFrame = ELTComponents.extract(spark, kafkaProperties("topic_I"), extractFunc)
 
   // transform data
   val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)

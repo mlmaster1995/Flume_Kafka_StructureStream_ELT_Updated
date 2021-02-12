@@ -11,7 +11,7 @@ trait PipelineUtils extends Serializable{
   // user-define-function to return a SparkSession class
   def getSparkSession:SparkSession
   // user-define-function to specify the extract function based on the source
-  def extractFunc(session: SparkSession):sql.DataFrame
+  def extractFunc(session: SparkSession, topic:String):sql.DataFrame
   // user-define-function to specify the transform function based on the sink
   def transformFunc (soruce: sql.DataFrame, session: SparkSession):sql.DataFrame
   // user-define-funciton to specify the extract function for kafka sink writer
@@ -34,8 +34,8 @@ case object vmstatPipeUtils extends Serializable with PipelineUtils {
       .getOrCreate()
   }
 
-  def extractFunc(session: SparkSession):sql.DataFrame =
-    session.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaProperties("brokers")).option("subscribe", "exec").load()
+  def extractFunc(session: SparkSession, topic:String):sql.DataFrame =
+    session.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaProperties("brokers")).option("subscribe", topic).load()
 
   def transformFunc (source: sql.DataFrame, session: SparkSession):sql.DataFrame = {
     import session.implicits._
@@ -59,11 +59,43 @@ case object vmstatPipeUtils extends Serializable with PipelineUtils {
 
 case object twitterPipeUtils extends Serializable with PipelineUtils{
   // user-define-function to return a SparkSession class
-  def getSparkSession:SparkSession = ???
+  def getSparkSession:SparkSession = {
+    Logger.getLogger("org").setLevel(Level.OFF)
+    Logger.getLogger("akka").setLevel(Level.OFF)
+    SparkSession
+      .builder()
+      .appName(s"${sparkProperties("name")}")
+      .config("spark.mongodb.input.uri", mongodbProperties("mongoInputURI"))
+      .config("spark.mongodb.output.uri", mongodbProperties("mongoOutputURI"))
+      .master(s"${sparkProperties("mode")}")
+      .enableHiveSupport()
+      .getOrCreate()
+  }
+
   // user-define-function to specify the extract function based on the source
-  def extractFunc(session: SparkSession):sql.DataFrame = ???
+  def extractFunc(session: SparkSession, topic:String):sql.DataFrame =
+    session.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaProperties("brokers")).option("subscribe", topic).load()
+
   // user-define-function to specify the transform function based on the sink
-  def transformFunc (soruce: sql.DataFrame, session: SparkSession):sql.DataFrame = ???
+  def transformFunc (source: sql.DataFrame, session: SparkSession):sql.DataFrame = {
+    import session.implicits._
+    source.select('*)
+  }
   // user-define-funciton to specify the extract function for kafka sink writer
   def extractRowDataForKafkaWriter (row: Row):String = ???
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,8 @@
-package com.kafka.spark.pipeline.pipelines.source_kafka_spark_hiveMetaStore
+package com.kafka.spark.oop.pipelines.source_kafka_spark_hiveMetaStore
 
-import com.kafka.spark.pipeline.dev.ApplicationProperties.hiveProperties
-import com.kafka.spark.pipeline.dev.ELTComponents
-import com.kafka.spark.pipeline.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
+import com.kafka.spark.oop.dev.ApplicationProperties.{hiveProperties, kafkaProperties}
+import com.kafka.spark.oop.dev.ELTComponents
+import com.kafka.spark.oop.dev.vmstatPipeUtils.{extractFunc, getSparkSession, transformFunc}
 import org.apache.spark.sql
 
 // write the stream to the metastore
@@ -11,7 +11,7 @@ object vmstatToHiveMetaStore extends Serializable {
   val spark = getSparkSession
 
   // extract data
-  val dataSource: sql.DataFrame = ELTComponents.extract(spark, extractFunc)
+  val dataSource: sql.DataFrame = ELTComponents.extract(spark,  kafkaProperties("topic_I"), extractFunc)
 
   // transform data
   val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)

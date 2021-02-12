@@ -13,6 +13,7 @@ object ApplicationProperties extends Serializable {
     "brokers" -> "localhost:9092",
     "topic_I" -> "exec",
     "topic_II" -> "toKafka",
+    "topic_III" -> "tweet",
   )
 
   val mySQLProperties: PropType = Map(

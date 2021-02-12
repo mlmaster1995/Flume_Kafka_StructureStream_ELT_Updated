@@ -6,7 +6,6 @@ import org.apache.spark.sql.{ForeachWriter, Row}
 import java.util.Properties
 
 object CustomSinkClasses extends Serializable {
-
   /*
    - write data to kafka
   */
@@ -23,5 +22,4 @@ object CustomSinkClasses extends Serializable {
     def process(row: Row) = producer.send(new ProducerRecord(topic, func(row)))
     def close(errorOrNull: Throwable) = producer.close
   }
-
 }
