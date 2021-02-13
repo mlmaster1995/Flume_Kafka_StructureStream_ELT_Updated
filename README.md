@@ -48,13 +48,7 @@ Pipelines are shown as the following image:
 ### Structure Data Samples
 **NOTE**: sensitive data is hidden or modified in the following samples. 
 
-* vmstat -> flume -> kafka -> spark structured streaming -> mySQL
-
-    | Tables        | Are           | Cool  |
-    | ------------- |:-------------:| -----:|
-    | col 3 is      | right-aligned | $1600 |
-    | col 2 is      | centered      |   $12 |
-    | zebra stripes | are neat      |    $1 |
+* Pipeline: vmstat -> flume -> kafka -> spark structured streaming -> mySQL
 
  
     | row_id | topic | time                | r    | b    | swpd | free   | buff | cache   | si   | so   | bi   | bo   | in_val | cs   | us   | sy   | id   | wa   | st   |
@@ -66,18 +60,18 @@ Pipelines are shown as the following image:
     |      5 | exec  | 2021-02-02 10:56:50 | 2    | 0    | 8    | 170608 | 1144 | 8919396 | 0    | 0    | 0    | 0    | 5363   | 4051 | 35   | 5    | 60   | 0    | 0    |
    
 
-* tweet stream -> kafka -> spark structured streaming -> mySQL
+* Pipeline: tweet stream -> kafka -> spark structured streaming -> mySQL
 
 
     | row_id | tweet_time                   | user_id  | full_name           | tweet_id  | tweet_source        | is_truncated | is_rt | tweet_text                                                                                                                                     |
-    +--------+------------------------------+----------+---------------------+---------------------+---------------------+--------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------+
-    |      1 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | just ordered my waist beads 🥰                                                                                                                   |
+    |--------|------------------------------|----------|---------------------|-----------|---------------------|--------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------|
+    |      1 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | just ordered my waist beads 🥰                                                                                                                 |
     |      2 | Fri Feb 12 20:04:55 EST 2021 |   ...    | chrisy 🌼@pptyaacy  |   ...     | Twitter for Android | false        | false | @bluexjjkyu okeyyy, happy weekend too! <3                                                                                                      |
     |      3 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @uhprome: I really be having 500 things to do and I go lay down                                                                             |
     |      4 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |  ...      | Twitter for iPhone  | false        | false | RT @thesecret: Every single time you focus on the positive, you are bringing more light into your life, and you know that light removes all…   |
     |      5 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @ferbIatin: the club penguin membership was the first introduction i had to the concept of the bourgeoisie vs. the proletariat              |
 
-* tweet stream -> kafka -> spark structred streaming -> mongoDB
+* Pipeline: tweet stream -> kafka -> spark structred streaming -> mongoDB
   
       {
         "_id" : ObjectId("60271b6f6a142c2014fdc296"),
