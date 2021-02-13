@@ -24,7 +24,7 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
 
 ### Pipeline
 Pipelines are shown as the following image:
-![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107066408-f1479180-67ab-11eb-89c7-ef5978a2878f.jpeg)
+![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107839886-c4334a00-6d7c-11eb-9ca9-fd301363fd00.jpeg)
 
 ### Built With*
 * [Scala 2.12.0](https://www.scala-lang.org/download/2.12.10.html)
