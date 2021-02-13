@@ -38,7 +38,7 @@ Pipelines are shown as the following image:
 * [MySQL 8.0.x](https://www.mysql.com/)
 
 ### Project Content
-    ./graph_images/
+
     ├── ApplicaitonJars                           # folder for all jars used for the project
     ├── kafka_flume_mysql_commands.txt            # all the commands for mysql, flume and kafka
     ├── KafkaSparkELT                             # Kafka Spark Data Pipeline Application Folder
