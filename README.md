@@ -64,12 +64,12 @@ Pipelines are shown as the following image:
 
 
     | row_id | tweet_time                   | user_id  | full_name           | tweet_id  | tweet_source        | is_truncated | is_rt | tweet_text                                                                                                                                     |
-    |--------|------------------------------|----------|---------------------|-----------|---------------------|--------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------|
-    |      1 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | just ordered my waist beads 🥰                                                                                                                 |
-    |      2 | Fri Feb 12 20:04:55 EST 2021 |   ...    | chrisy 🌼@pptyaacy  |   ...     | Twitter for Android | false        | false | @bluexjjkyu okeyyy, happy weekend too! <3                                                                                                      |
-    |      3 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @uhprome: I really be having 500 things to do and I go lay down                                                                             |
-    |      4 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |  ...      | Twitter for iPhone  | false        | false | RT @thesecret: Every single time you focus on the positive, you are bringing more light into your life, and you know that light removes all…   |
-    |      5 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @ferbIatin: the club penguin membership was the first introduction i had to the concept of the bourgeoisie vs. the proletariat              |
+    |--------|------------------------------|----------|---------------------|-----------|---------------------|--------------|-------|------------------------------------|
+    |      1 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | just ordered my waist beads 🥰     |
+    |      2 | Fri Feb 12 20:04:55 EST 2021 |   ...    | chrisy 🌼@pptyaacy  |   ...     | Twitter for Android | false        | false | @bluexjjkyu okeyyy,          ...   |
+    |      3 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @uhprome: I really         ...  |
+    |      4 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |  ...      | Twitter for iPhone  | false        | false | RT @thesecret: Every          ...  |
+    |      5 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @ferbIatin: the            ...  |
 
 * Pipeline: tweet stream -> kafka -> spark structred streaming -> mongoDB
   
