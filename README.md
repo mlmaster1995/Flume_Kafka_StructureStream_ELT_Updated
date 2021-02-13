@@ -1,4 +1,4 @@
-## Kafka Spark Stream Data ETL Pipeline Collection OOP
+## Kafka Spark Stream ETL Pipeline Collection OOP
 ![Hex.pm](https://img.shields.io/hexpm/l/plug?logo=Apache&logoColor=%23ff0000&style=flat-square)
 
 ### Table of Contents
