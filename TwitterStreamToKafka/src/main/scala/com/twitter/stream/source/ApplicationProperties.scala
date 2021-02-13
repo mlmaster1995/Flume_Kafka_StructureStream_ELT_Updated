@@ -1,3 +1,4 @@
+
 package com.twitter.stream.source
 
 object ApplicationProperties extends Serializable {
@@ -11,11 +12,9 @@ object ApplicationProperties extends Serializable {
     "Access_token_secret" -> "...",
   )
 
-
   val kafkaProperties: PropType = Map(
     "brokers" -> "localhost:9092",
     "topic" -> "tweet",
   )
-
 
 }
