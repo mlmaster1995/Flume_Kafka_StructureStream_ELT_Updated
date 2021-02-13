@@ -4,6 +4,7 @@
 ### Table of Contents
 * [About the Project](#about-the-project)
 * [What's New](#what's-new)
+* [Pipelines](#pipelines)  
 * [Built With](#built-with)
 * [Project Content](#project-content)
 * [Structure Data Samples](#structure-data-samples)
@@ -22,9 +23,9 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
 * This project adds three more sinks including mySQL, HiveTable, MongoDB on top of previous version, so totally 7 data sinks;
 * This is an Object-Oriented Project, so each pipeline could be reused by over-writing user-define-functions for any other soruces and new sinks;
 
-### Pipeline
+### Pipelines
 Pipelines are shown as the following image:
-![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107839886-c4334a00-6d7c-11eb-9ca9-fd301363fd00.jpeg)
+![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107840061-9ac6ee00-6d7d-11eb-932f-3b63d6522b5b.jpeg)
 
 ### Built With*
 * [Scala 2.12.0](https://www.scala-lang.org/download/2.12.10.html)
