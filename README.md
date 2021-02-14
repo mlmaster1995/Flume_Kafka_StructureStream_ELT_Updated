@@ -24,8 +24,17 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
 * This is an Object-Oriented Project, so each pipeline could be reused by over-writing user-define-functions for any other soruces and new sinks;
 
 ### Pipelines
-Pipelines are shown as the following image:
+
+Pipeline Structure:
+
 ![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107840061-9ac6ee00-6d7d-11eb-932f-3b63d6522b5b.jpeg)
+
+Pipeline List:
+
+    |    Source    |                  Pipeline                    |                               Sinks                                 |
+    | ------------ | -------------------------------------------- | ------------------------------------------------------------------- |
+    |    vmstat    |   flume => kafka => spark structured stream  |   console, hdfs, hive metastore, hive table, kafka, mongoDB, mySQL  |
+    | tweet stream |   kafka => spark structured stream           |   console, hdfs, hive metastore, hive table, kafka, mongoDB, mySQL  |
 
 ### Built With*
 * [Scala 2.12.0](https://www.scala-lang.org/download/2.12.10.html)
@@ -64,10 +73,10 @@ Pipelines are shown as the following image:
 * Pipeline: tweet stream -> kafka -> spark structured streaming -> mySQL
 
 
-    | row_id | tweet_time                   | user_id  | full_name           | tweet_id  | tweet_source        | is_truncated | is_rt | tweet_text                                                                                                                                     |
+    | row_id | tweet_time                   | user_id  | full_name           | tweet_id  | tweet_source        | is_truncated | is_rt | tweet_text                         |
     |--------|------------------------------|----------|---------------------|-----------|---------------------|--------------|-------|------------------------------------|
-    |      1 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | just ordered my waist beads 🥰     |
-    |      2 | Fri Feb 12 20:04:55 EST 2021 |   ...    | chrisy 🌼@pptyaacy  |   ...     | Twitter for Android | false        | false | @bluexjjkyu okeyyy,          ...   |
+    |      1 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | just ordered ... 🥰 ...       ...  |
+    |      2 | Fri Feb 12 20:04:55 EST 2021 |   ...    | chrisy 🌼@pptyaacy  |   ...     | Twitter for Android | false        | false | @bluexjjkyu okeyyy,           ...  |
     |      3 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @uhprome: I really         ...  |
     |      4 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |  ...      | Twitter for iPhone  | false        | false | RT @thesecret: Every          ...  |
     |      5 | Fri Feb 12 20:04:55 EST 2021 |   ...    |      ...            |   ...     | Twitter for iPhone  | false        | false | RT @ferbIatin: the            ...  |
