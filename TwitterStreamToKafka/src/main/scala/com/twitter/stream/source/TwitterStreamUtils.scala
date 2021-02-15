@@ -56,17 +56,39 @@ object TwitterStreamUtils extends Serializable{
   }
 
   // set up kafka producer writer
-  def writeToKafkaProducer (bootstrapServers:String, kafkaTopic:String, message:String) = {
+  def writeToKafkaProducer (mode: String, bootstrap:String, ack:String, retry:String, linger:String, batchSize:String, kafkaTopic:String, message:String) = {
     val properties = new Properties()
-    properties.put("bootstrap.servers", bootstrapServers)
+    properties.put("bootstrap.servers", bootstrap)
     properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-    properties.put("linger.ms", "3000")
-    properties.put("batch.size", "500")
+    properties.put("acks", ack)
+    properties.put("retries", retry)
+    properties.put("linger.ms", linger)
+    properties.put("batch.size", batchSize)
     val producer = new KafkaProducer[String, String](properties)
-    producer.send(new ProducerRecord(kafkaTopic, message))
-  }
 
+    if(mode == "forget-and-fire" && ack == "0") {
+      // forget-and-fire mode
+      try {
+        producer.send(new ProducerRecord(kafkaTopic, message))
+      }
+      catch {
+        case _: Throwable => println("fails to write to kafka producer...")
+      }
+      finally {
+        producer.close()
+        println("****************Tweets are sent********************")
+      }
+    }
+    else if (mode == "sync" && ack == "1"){
+      // sync mode
+    }
+    else if (mode == "async" && ack == "1") {
+      // async mode
+    }
+    else
+      throw new Exception("error: mode and ack not match...")
+  }
 }
 
 

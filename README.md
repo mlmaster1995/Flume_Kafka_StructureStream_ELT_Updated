@@ -31,7 +31,7 @@ Pipeline Structure:
 
 Pipeline List:
 
-    |    Source    |                  Pipeline                    |                               Sinks                                 |
+    |    Sources   |                  Pipelines                   |                               Sinks                                 |
     | ------------ | -------------------------------------------- | ------------------------------------------------------------------- |
     |    vmstat    |   flume => kafka => spark structured stream  |   console, hdfs, hive metastore, hive table, kafka, mongoDB, mySQL  |
     | tweet stream |   kafka => spark structured stream           |   console, hdfs, hive metastore, hive table, kafka, mongoDB, mySQL  |

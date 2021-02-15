@@ -22,14 +22,23 @@ import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener, Tw
 
 object TwitterStreamToKafkaProducer extends Serializable with App{
   // set up twitter api config
-  val config = getTweetConfig(twitterAPIProperties("API_key"),twitterAPIProperties("API_secrete_key"),twitterAPIProperties("Access_token"),twitterAPIProperties("Access_token_secret"))
+  val config = getTweetConfig(api_key = twitterAPIProperties("API_key"),
+                              api_secret_key = twitterAPIProperties("API_secrete_key"),
+                              access_token = twitterAPIProperties("Access_token"),
+                              access_token_secret = twitterAPIProperties("Access_token_secret"))
   // get twitterStream instance
   val twitterStream: TwitterStream = getTweetStream(config)
-  // set up delimiter to concat all tweet info
-  val deli = "&&&&"
   // set up the tweet status
+  //bootstrap:String, ack:String, retry:Int, linger:Int, batchSize:Int, kafkaTopic:String, message:String
   twitterStream.addListener(new StatusListener() {
-    override def onStatus(status: Status): Unit =  writeToKafkaProducer(kafkaProperties("brokers"), kafkaProperties("topic"), concatTweetData(status, deli))
+    override def onStatus(status: Status): Unit =  writeToKafkaProducer(mode=kafkaProperties("mode"),
+                                                                        bootstrap= kafkaProperties("brokers"),
+                                                                        ack= kafkaProperties("sync"),
+                                                                        retry = kafkaProperties("retries"),
+                                                                        linger= kafkaProperties("linger"),
+                                                                        batchSize = kafkaProperties("batchSize"),
+                                                                        kafkaTopic = kafkaProperties("topic"),
+                                                                        message = concatTweetData(status, kafkaProperties("delimiter")))
     override def onDeletionNotice(statusDeletionNotice: StatusDeletionNotice): Unit = {}
     override def onTrackLimitationNotice(numberOfLimitedStatuses: Int): Unit = {}
     override def onScrubGeo(userId: Long, upToStatusId: Long): Unit = {}
@@ -37,5 +46,5 @@ object TwitterStreamToKafkaProducer extends Serializable with App{
     override def onException(ex: Exception): Unit = {}
   })
   // start to sample english tweets
-  twitterStream.sample(twitterAPIProperties("language"))
+  twitterStream.sample(twitterAPIProperties("language").toString)
 }

@@ -27,9 +27,16 @@ object ApplicationProperties extends Serializable {
     "Access_token_secret" -> "...",
   )
 
-  val kafkaProperties: PropType = Map(
-    "brokers" -> "localhost:9092",
+
+  val kafkaProperties: Map[String, String] = Map(
+    "delimiter" -> "&&&&",        // delimiter used to concat all tweet info into an string
+    "mode" -> "fire-and-forget",  // available modes: fire-and-forget, sync, async
+    "brokers" -> "localhost:9101",
     "topic" -> "tweet",
+    "sync" -> "0",                // accept acc
+    "retries" ->"0",              // retry in async mode
+    "linger" -> "300",            // linger time 300ms
+    "batchSize" -> "16384"        // batch size default at 16384
   )
 
 }

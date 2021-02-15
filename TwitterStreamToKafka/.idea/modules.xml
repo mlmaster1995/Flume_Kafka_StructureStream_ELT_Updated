@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TwitterStreamToKafkaProducer.iml" filepath="$PROJECT_DIR$/.idea/modules/TwitterStreamToKafkaProducer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Twitter_Stream_Source.iml" filepath="$PROJECT_DIR$/.idea/modules/Twitter_Stream_Source.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Twitter_Stream_Source-build.iml" filepath="$PROJECT_DIR$/.idea/modules/Twitter_Stream_Source-build.iml" />
     </modules>
   </component>
