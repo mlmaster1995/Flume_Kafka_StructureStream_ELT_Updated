@@ -27,16 +27,16 @@ object ApplicationProperties extends Serializable {
     "Access_token_secret" -> "...",
   )
 
-
+  // basic props for kafka producer config, more props could be added for more configs
   val kafkaProperties: Map[String, String] = Map(
-    "delimiter" -> "&&&&",        // delimiter used to concat all tweet info into an string
-    "mode" -> "fire-and-forget",  // available modes: fire-and-forget, sync, async
+    "delimiter" -> "&&&&",          // delimiter used to concat all tweet info into an string
+    "mode" -> "async",              // available modes: forget-and-fire, sync, async
     "brokers" -> "localhost:9101",
     "topic" -> "tweet",
-    "sync" -> "0",                // accept acc
-    "retries" ->"0",              // retry in async mode
-    "linger" -> "300",            // linger time 300ms
-    "batchSize" -> "16384"        // batch size default at 16384
+    "ack" -> "1",                   // ack: forget-and-fire & 0, sync & 1, async & 1
+    "retries" ->"1",                // retry
+    "linger" -> "1",                // linger time
+    "batchSize" -> "16384"          // batch size default at 16384
   )
 
 }

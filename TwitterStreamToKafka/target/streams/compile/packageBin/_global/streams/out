@@ -18,6 +18,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/TwitterStreamToKafka/target/scala-2.12/classes/com/twitter/stream/source/TwitterStreamToKafkaProducer$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/twitter/stream/source/TwitterStreamUtils.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/TwitterStreamToKafka/target/scala-2.12/classes/com/twitter/stream/source/TwitterStreamUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/twitter/stream/source/TwitterStreamUtils$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/TwitterStreamToKafka/target/scala-2.12/classes/com/twitter/stream/source/TwitterStreamUtils$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/twitter/stream/source/TwitterStreamToKafkaProducer.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/TwitterStreamToKafka/target/scala-2.12/classes/com/twitter/stream/source/TwitterStreamToKafkaProducer.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/twitter/stream/source/ApplicationProperties.class[0m

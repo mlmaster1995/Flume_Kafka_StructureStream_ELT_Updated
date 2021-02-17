@@ -19,6 +19,7 @@ package com.twitter.stream.source
 import com.twitter.stream.source.ApplicationProperties.{kafkaProperties, twitterAPIProperties}
 import com.twitter.stream.source.TwitterStreamUtils.{concatTweetData, getTweetConfig, getTweetStream, writeToKafkaProducer}
 import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener, TwitterStream, TwitterStreamFactory}
+import java.util.logging.{Level, Logger}
 
 object TwitterStreamToKafkaProducer extends Serializable with App{
   // set up twitter api config
@@ -29,11 +30,10 @@ object TwitterStreamToKafkaProducer extends Serializable with App{
   // get twitterStream instance
   val twitterStream: TwitterStream = getTweetStream(config)
   // set up the tweet status
-  //bootstrap:String, ack:String, retry:Int, linger:Int, batchSize:Int, kafkaTopic:String, message:String
   twitterStream.addListener(new StatusListener() {
     override def onStatus(status: Status): Unit =  writeToKafkaProducer(mode=kafkaProperties("mode"),
                                                                         bootstrap= kafkaProperties("brokers"),
-                                                                        ack= kafkaProperties("sync"),
+                                                                        ack= kafkaProperties("ack"),
                                                                         retry = kafkaProperties("retries"),
                                                                         linger= kafkaProperties("linger"),
                                                                         batchSize = kafkaProperties("batchSize"),

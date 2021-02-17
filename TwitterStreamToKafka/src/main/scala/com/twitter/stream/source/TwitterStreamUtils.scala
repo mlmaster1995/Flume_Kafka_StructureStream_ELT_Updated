@@ -16,9 +16,7 @@ See the License for the specific language governing permissions and
 
 package com.twitter.stream.source
 
-import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
-
-
+import org.apache.kafka.clients.producer.{Callback, KafkaProducer, ProducerRecord, RecordMetadata}
 import twitter4j.{Status, TwitterStream, TwitterStreamFactory}
 import twitter4j.conf.Configuration
 
@@ -35,7 +33,7 @@ object TwitterStreamUtils extends Serializable{
 
   // get tweet config
   def getTweetConfig(api_key:String, api_secret_key:String, access_token:String, access_token_secret:String):Configuration =
-    new twitter4j.conf.ConfigurationBuilder().setOAuthConsumerKey(api_key).setOAuthConsumerSecret(api_secret_key)
+    new twitter4j.conf.ConfigurationBuilder().setDebugEnabled(true).setOAuthConsumerKey(api_key).setOAuthConsumerSecret(api_secret_key)
       .setOAuthAccessToken(access_token).setOAuthAccessTokenSecret(access_token_secret).build
 
   // get tweet stream instance
@@ -55,8 +53,23 @@ object TwitterStreamUtils extends Serializable{
     concatWithDelimiter(concatDelimiter, Queue(tweetCreatedDate, tweetUserID, tweetFullName.trim,tweetID,tweetSource.trim,tweetStatusTruncated, tweetIsRT,tweetText.trim))
   }
 
+  // kafka callback anonymous class
+  val kafkaCallBack = new Callback {
+    override def onCompletion(metadata: RecordMetadata, exception: Exception): Unit =
+      if (exception != null) println(exception)
+      else println("*******record published to [partition:" + metadata.partition + ",offset:" + metadata.offset + "]*******")
+  }
+
   // set up kafka producer writer
-  def writeToKafkaProducer (mode: String, bootstrap:String, ack:String, retry:String, linger:String, batchSize:String, kafkaTopic:String, message:String) = {
+  def writeToKafkaProducer (mode: String,
+                            bootstrap:String,
+                            ack:String,
+                            retry:String,
+                            linger:String,
+                            batchSize:String,
+                            kafkaTopic:String,
+                            message:String) = {
+
     val properties = new Properties()
     properties.put("bootstrap.servers", bootstrap)
     properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
@@ -70,24 +83,46 @@ object TwitterStreamUtils extends Serializable{
     if(mode == "forget-and-fire" && ack == "0") {
       // forget-and-fire mode
       try {
-        producer.send(new ProducerRecord(kafkaTopic, message))
+        producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(3), message))
       }
       catch {
         case _: Throwable => println("fails to write to kafka producer...")
       }
       finally {
         producer.close()
-        println("****************Tweets are sent********************")
+        println("*******Tweets are sent*******")
       }
     }
     else if (mode == "sync" && ack == "1"){
       // sync mode
+      try {
+        val ack = producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(3), message)).get()
+        println("*******record published to [partition: " + ack.partition + ",offset: " + ack.offset + "]*******")
+      }
+      catch {
+        case _: Throwable => println("fails to write to kafka producer...")
+      }
+      finally {
+        producer.close()
+        println("*******Tweets are sent*******")
+      }
     }
     else if (mode == "async" && ack == "1") {
       // async mode
+      try {
+        producer.send(new ProducerRecord(kafkaTopic, "tweet"+ util.Random.nextInt(3), message), kafkaCallBack)
+      }
+      catch {
+        case _: Throwable => println("fails to write to kafka producer...")
+      }
+      finally {
+        producer.close()
+        println("*******Tweets are sent*******")
+      }
     }
     else
-      throw new Exception("error: mode and ack not match...")
+      println("!!!!!!!!no messages write to kafka!!!!!!!!")
+
   }
 }
 
