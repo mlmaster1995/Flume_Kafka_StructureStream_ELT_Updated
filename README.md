@@ -12,7 +12,7 @@
 
 ### About The Project
 This project is updated from [Stream Data Pipeline with Flume Kafka StructureStream](https://github.com/mlmaster1995/Flume_Kafka_StructureStream_ELT) 
-conducted in 2020, but this work is with the latest stable version of spark and kafka. The whole project is tested in the centOS7 VM configured with all required technology.
+conducted in 2020, but this work is developed with the latest stable version of spark and kafka. The whole project is tested in the centOS7 VM configured with all required technology.
 The whole project is developed as Object Oriented Project containing two real-time stream data sources and seven different sinks. User could overwrite the
 user-define-function to reuse any ETL pipeline to acquire the real-time data.
 
@@ -24,12 +24,11 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
 * This is an Object-Oriented Project, so each pipeline could be reused by over-writing user-define-functions for any other soruces and new sinks;
 
 ### Pipelines
-
-Pipeline Structure:
+* Pipeline Structure:
 
 ![Big Data Flow Charts](https://user-images.githubusercontent.com/55723894/107840061-9ac6ee00-6d7d-11eb-932f-3b63d6522b5b.jpeg)
 
-Pipeline List:
+* Pipeline List:
 
     |    Sources   |                  Pipelines                   |                               Sinks                                 |
     | ------------ | -------------------------------------------- | ------------------------------------------------------------------- |
