@@ -1,0 +1,15 @@
+//"tweetdate"<delimiter>"userID"<delimiter>"fullName"<delimiter>"tweetID"<delimiter>"tweetSource"<delimiter>"isTruncated"<delimiter>"isRT"<delimiter>"tweet"
+{"namespace": "tweet.kafka.avro",
+  "type": "record",
+  "name": "Tweet",
+  "fields": [
+    {"name": "tweetdate", "type": "string"},
+    {"name": "userID",  "type": ["long", "null"]},
+    {"name": "fullName",  "type": ["string", "null"]},
+    {"name": "tweetID",  "type": ["long", "null"]},
+    {"name": "tweetSource",  "type": ["string", "null"]},
+    {"name": "isTruncated",  "type": ["boolean", "null"]},
+    {"name": "isRT",  "type": ["boolean", "null"]},
+    {"name": "tweet",  "type": ["string", "null"]}
+  ]
+}

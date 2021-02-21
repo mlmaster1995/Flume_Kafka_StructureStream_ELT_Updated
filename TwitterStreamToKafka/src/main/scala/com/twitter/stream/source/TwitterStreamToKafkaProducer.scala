@@ -16,10 +16,9 @@ See the License for the specific language governing permissions and
 
 package com.twitter.stream.source
 
-import com.twitter.stream.source.ApplicationProperties.{kafkaProperties, twitterAPIProperties}
-import com.twitter.stream.source.TwitterStreamUtils.{concatTweetData, getTweetConfig, getTweetStream, writeToKafkaProducer}
-import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener, TwitterStream, TwitterStreamFactory}
-import java.util.logging.{Level, Logger}
+import com.twitter.stream.source.ApplicationProperties.{kafkaProps, twitterAPIProperties}
+import com.twitter.stream.source.TwitterStreamUtils.{concatTweetData, getTweetConfig, getTweetStream, schemaTweetData, writeToKafkaProducer, writeToKafkaProducerAvro}
+import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener, TwitterStream}
 
 object TwitterStreamToKafkaProducer extends Serializable with App{
   // set up twitter api config
@@ -29,16 +28,24 @@ object TwitterStreamToKafkaProducer extends Serializable with App{
                               access_token_secret = twitterAPIProperties("Access_token_secret"))
   // get twitterStream instance
   val twitterStream: TwitterStream = getTweetStream(config)
-  // set up the tweet status
+  // with schema or not
+  val withAvro:Boolean = true
+  /*
+   - set up the tweet status
+   - "writeToKafkaProducer" is to produce messages in the plain string
+   - "writeToKafkaProducerAvro" is to produce messages with certain schema via Schema Registry
+  */
   twitterStream.addListener(new StatusListener() {
-    override def onStatus(status: Status): Unit =  writeToKafkaProducer(mode=kafkaProperties("mode"),
-                                                                        bootstrap= kafkaProperties("brokers"),
-                                                                        ack= kafkaProperties("ack"),
-                                                                        retry = kafkaProperties("retries"),
-                                                                        linger= kafkaProperties("linger"),
-                                                                        batchSize = kafkaProperties("batchSize"),
-                                                                        kafkaTopic = kafkaProperties("topic"),
-                                                                        message = concatTweetData(status, kafkaProperties("delimiter")))
+
+    override def onStatus(status: Status): Unit =  {
+      if(!withAvro)
+        writeToKafkaProducer(mode=kafkaProps("mode"), bootstrap= kafkaProps("brokers"), ack= kafkaProps("ack"), retry = kafkaProps("retries"), linger= kafkaProps("linger"),
+          batchSize = kafkaProps("batchSize"), kafkaTopic = kafkaProps("topic"), message = concatTweetData(status, kafkaProps("delimiter")))
+      else
+        writeToKafkaProducerAvro(mode=kafkaProps("mode"), schemaRegistryURL= kafkaProps("schemaRegistryURL"),bootstrap= kafkaProps("brokers"), ack= kafkaProps("ack"),
+          retry = kafkaProps("retries"), linger= kafkaProps("linger"), batchSize = kafkaProps("batchSize"), kafkaTopic = kafkaProps("topic"), message = schemaTweetData(status))
+    }
+
     override def onDeletionNotice(statusDeletionNotice: StatusDeletionNotice): Unit = {}
     override def onTrackLimitationNotice(numberOfLimitedStatuses: Int): Unit = {}
     override def onScrubGeo(userId: Long, upToStatusId: Long): Unit = {}
@@ -46,5 +53,5 @@ object TwitterStreamToKafkaProducer extends Serializable with App{
     override def onException(ex: Exception): Unit = {}
   })
   // start to sample english tweets
-  twitterStream.sample(twitterAPIProperties("language").toString)
+  twitterStream.sample(twitterAPIProperties("language"))
 }

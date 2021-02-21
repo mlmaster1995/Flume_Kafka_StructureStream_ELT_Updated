@@ -17,6 +17,7 @@ See the License for the specific language governing permissions and
 package com.twitter.stream.source
 
 import org.apache.kafka.clients.producer.{Callback, KafkaProducer, ProducerRecord, RecordMetadata}
+import tweet.kafka.avro.Tweet
 import twitter4j.{Status, TwitterStream, TwitterStreamFactory}
 import twitter4j.conf.Configuration
 
@@ -53,6 +54,19 @@ object TwitterStreamUtils extends Serializable{
     concatWithDelimiter(concatDelimiter, Queue(tweetCreatedDate, tweetUserID, tweetFullName.trim,tweetID,tweetSource.trim,tweetStatusTruncated, tweetIsRT,tweetText.trim))
   }
 
+  // fill the tweet data into the Tweet Schema defined in "tweetSchema.avsc"
+  def schemaTweetData(tweetStatus:Status):Tweet={
+    val tweetCreatedDate:Date = tweetStatus.getCreatedAt()
+    val tweetID:Long = tweetStatus.getId()
+    val tweetText:String = tweetStatus.getText()
+    val tweetSource:String = {val ptrn = "<a href=\"([\\w\\.\\/\\:]*)\" rel=\"([\\w]*)\">([\\w ]*)</a>".r;tweetStatus.getSource() match{case ptrn(c0,c1,c2) => s"${c2}"}}
+    val tweetUserID:Long = tweetStatus.getUser.getId
+    val tweetFullName:String = tweetStatus.getUser.getName + "@" + tweetStatus.getUser.getScreenName
+    val tweetStatusTruncated:Boolean = tweetStatus.isTruncated
+    val tweetIsRT:Boolean = tweetStatus.isRetweeted
+    new Tweet(s"$tweetCreatedDate", tweetUserID, tweetFullName, tweetID, tweetSource, tweetStatusTruncated, tweetIsRT, tweetText)
+  }
+
   // kafka callback anonymous class
   val kafkaCallBack = new Callback {
     override def onCompletion(metadata: RecordMetadata, exception: Exception): Unit =
@@ -60,7 +74,75 @@ object TwitterStreamUtils extends Serializable{
       else println("*******record published to [partition:" + metadata.partition + ",offset:" + metadata.offset + "]*******")
   }
 
-  // set up kafka producer writer
+  // set up kafka producer writer with the schema in the Avro format
+  def writeToKafkaProducerAvro (mode: String,
+                                schemaRegistryURL:String,
+                                bootstrap:String,
+                                ack:String,
+                                retry:String,
+                                linger:String,
+                                batchSize:String,
+                                kafkaTopic:String,
+                                message:Tweet):Unit = {
+
+    val properties = new Properties()
+    properties.put("bootstrap.servers", bootstrap)
+    properties.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer")   // Change StringSerializer to KafkaAvroSerializer
+    properties.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer") // Change StringSerializer to KafkaAvroSerializer
+    properties.put("schema.registry.url", schemaRegistryURL)                           // Schema Registry url
+    properties.put("acks", ack)
+    properties.put("retries", retry)
+    properties.put("linger.ms", linger)
+    properties.put("batch.size", batchSize)
+    val producer = new KafkaProducer[String, Tweet](properties)
+
+    if(mode == "forget-and-fire" && ack == "0") {
+      // forget-and-fire mode
+      try {
+//        val tt = new Tweet("a", 1L, "b", 2L, "c", false, false, "hello world")
+        producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(100), message))
+      }
+      catch {
+        case _: Throwable => println("fails to write to kafka producer...")
+      }
+      finally {
+        producer.close()
+        println("*******Tweets are sent*******")
+      }
+    }
+    else if (mode == "sync" && ack == "1"){
+      // sync mode
+      try {
+        val ack = producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(100), message)).get()
+        println("*******record published to [partition: " + ack.partition + ",offset: " + ack.offset + "]*******")
+      }
+      catch {
+        case _: Throwable => println("fails to write to kafka producer...")
+      }
+      finally {
+        producer.close()
+        println("*******Tweets are sent*******")
+      }
+    }
+    else if (mode == "async" && ack == "1") {
+      // async mode
+      try {
+        producer.send(new ProducerRecord(kafkaTopic, "tweet"+ util.Random.nextInt(100), message), kafkaCallBack)
+      }
+      catch {
+        case _: Throwable => println("fails to write to kafka producer...")
+      }
+      finally {
+        producer.close()
+        println("*******Tweets are sent*******")
+      }
+    }
+    else
+      println("!!!!!!!!no messages write to kafka!!!!!!!!")
+
+  }
+
+  // set up kafka producer writer without the schema in the plain string format
   def writeToKafkaProducer (mode: String,
                             bootstrap:String,
                             ack:String,
@@ -68,7 +150,7 @@ object TwitterStreamUtils extends Serializable{
                             linger:String,
                             batchSize:String,
                             kafkaTopic:String,
-                            message:String) = {
+                            message:String):Unit = {
 
     val properties = new Properties()
     properties.put("bootstrap.servers", bootstrap)
@@ -83,7 +165,7 @@ object TwitterStreamUtils extends Serializable{
     if(mode == "forget-and-fire" && ack == "0") {
       // forget-and-fire mode
       try {
-        producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(3), message))
+        producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(100), message))
       }
       catch {
         case _: Throwable => println("fails to write to kafka producer...")
@@ -96,7 +178,7 @@ object TwitterStreamUtils extends Serializable{
     else if (mode == "sync" && ack == "1"){
       // sync mode
       try {
-        val ack = producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(3), message)).get()
+        val ack = producer.send(new ProducerRecord(kafkaTopic, "tweet"+util.Random.nextInt(100), message)).get()
         println("*******record published to [partition: " + ack.partition + ",offset: " + ack.offset + "]*******")
       }
       catch {
@@ -110,7 +192,7 @@ object TwitterStreamUtils extends Serializable{
     else if (mode == "async" && ack == "1") {
       // async mode
       try {
-        producer.send(new ProducerRecord(kafkaTopic, "tweet"+ util.Random.nextInt(3), message), kafkaCallBack)
+        producer.send(new ProducerRecord(kafkaTopic, "tweet"+ util.Random.nextInt(100), message), kafkaCallBack)
       }
       catch {
         case _: Throwable => println("fails to write to kafka producer...")
@@ -124,6 +206,8 @@ object TwitterStreamUtils extends Serializable{
       println("!!!!!!!!no messages write to kafka!!!!!!!!")
 
   }
+
+
 }
 
 

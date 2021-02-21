@@ -9,6 +9,8 @@ mysql> DROP TABLE IF EXISTS chrisy.fromTweet;
 mysql> CREATE TABLE IF NOT EXISTS chrisy.fromTweet (row_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, tweet_time VARCHAR(50), user_id VARCHAR(50), full_name VARCHAR(100), tweet_id VARCHAR(50), tweet_source VARCHAR(50), is_truncated VARCHAR(5), is_rt VARCHAR(5), tweet_text TEXT);
 
 ### Kafka commands for "twitter" data srouce
+// start avro consumer
+$ bin./kafka-avro-console-consumer --bootstrap-server localhost:9101 --topic tweetAvro
 // create a new tweet topic
 $ kafka-topics.sh --create --topic tweet --zookeeper localhost:2181 --partitions 1 --replication-factor 1
 // start consumer and producer
