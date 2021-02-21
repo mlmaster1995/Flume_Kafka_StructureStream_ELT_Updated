@@ -43,7 +43,7 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
 * [Apache Flume 1.9.0](https://flume.apache.org/releases/1.5.2.html)
 * [Apache Kafka 2.7.0](https://kafka.apache.org/0102/documentation.html)
 * [Apache Hadoop 2.7.7](https://hadoop.apache.org/)
-* [Confluent Schema Registry (Community Platform 6.1.0)](https://www.confluent.io/download/)  
+* [Confluent Schema Registry (Community Platform 6.1.0)](https://github.com/confluentinc/schema-registry)  
 * [Twitter4j 4.0.7](http://twitter4j.org/en/index.html)
 * [MongoDB 4.2](https://www.mongodb.com/)
 * [MySQL 8.0.x](https://www.mysql.com/)
@@ -102,7 +102,9 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
     
      
      {"tweetdate":"Sat Feb 20 19:23:25 EST 2021","userID":{"long":...},"fullName":{"string":"Aphrodi\uD83D\uD..."},"tweetID":{"long":...},"tweetSource":{"string":"Twitter for iPhone"},"isTruncated":{"boolean":false},"isRT":{"boolean":false},"tweet":{"string":"RT @deeptrusts: I want someo ..."}}
+     
      {"tweetdate":"Sat Feb 20 19:23:25 EST 2021","userID":{"long":...},"fullName":{"string":"Ro ♒\uD83D\uDC96..."},"tweetID":{"long":...},"tweetSource":{"string":"Twitter for iPhone"},"isTruncated":{"boolean":false},"isRT":{"boolean":false},"tweet":{"string":"RT @feelxpain: i fucking fac ..."}}
+     
      {"tweetdate":"Sat Feb 20 19:23:25 EST 2021","userID":{"long":...},"fullName":{"string":"nico._.macedo@ni..."},"tweetID":{"long":...},"tweetSource":{"string":"Twitter for Android"},"isTruncated":{"boolean":false},"isRT":{"boolean":false},"tweet":{"string":"@mukti_alin NFR lbinoBateon ..."}}
 
 
