@@ -22,7 +22,7 @@ import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener, Tw
 
 object TwitterStreamToKafkaProducer extends Serializable with App{
   // set avro schema flag
-  val withAvroSchema:Boolean = false
+  val withAvroSchema:Boolean = true
 
   // set up twitter api config
   val config = getTweetConfig(twitterAPIProps("API_key"), twitterAPIProps("API_secrete_key"), twitterAPIProps("Access_token"), twitterAPIProps("Access_token_secret"))

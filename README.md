@@ -1,4 +1,4 @@
-## Kafka Spark Stream ETL Pipeline Collection OOP
+## ETL Data Pipeline Collection OOP With Kafka, Spark
 ![Hex.pm](https://img.shields.io/hexpm/l/plug?logo=Apache&logoColor=%23ff0000&style=flat-square)
 
 ### Table of Contents
@@ -12,16 +12,16 @@
 
 ### About The Project
 This project is updated from [Stream Data Pipeline with Flume Kafka StructureStream](https://github.com/mlmaster1995/Flume_Kafka_StructureStream_ELT) 
-conducted in 2020, but this work is developed with the latest stable version of spark and kafka. The whole project is tested in the centOS7 VM configured with all required technology.
-The whole project is developed as Object Oriented Project containing two real-time stream data sources and seven different sinks. User could overwrite the
-user-define-function to reuse any ETL pipeline to acquire the real-time data.
+conducted in 2020, but this work is developed with newer version of spark and kafka. The whole project is tested in the centOS7 VM configured with all required technology.
 
 ### What's New
-* This project is conducted with newer version of Kafka and Spark in Scala 2.12;
-* Adds Twitter Stream source which could be ingested into Kafka producer with "sync", "async", "fire-and-forget" modes;
-* Adds Avro Schema to the tweet stream source working with Confluent Schema Registry;  
-* This project adds three more sinks including mySQL, HiveTable, MongoDB on top of previous version, so totally 7 data sinks;
-* This is an Object-Oriented Project, so each pipeline could be reused by over-writing user-define-functions for any other soruces and new sinks;
+* Use newer version of Kafka and Spark in Scala 2.12;
+* Add twitter stream source;
+* Add Kafka Producer in Scala;
+* Add Kafka Consumer in Scala;   
+* Add Avro Schema to the tweet stream source;  
+* Add three more sinks including mySQL, HiveTable, MongoDB;
+* Updates to an Object-Oriented Project for an easy update for new data sources and sinks in the future;
 
 ### Pipelines
 * Pipeline Structure:
@@ -31,11 +31,11 @@ user-define-function to reuse any ETL pipeline to acquire the real-time data.
 * Pipeline List:
 
 
-    |    Sources   |                  Pipelines                   |                               Sinks                                 |
-    | ------------ | -------------------------------------------- | ------------------------------------------------------------------- |
-    |    vmstat    |   flume => kafka => spark structured stream  |   console, hdfs, hive metastore, hive table, kafka, mongoDB, mySQL  |
-    | tweet stream |   kafka => spark structured stream           |   console, hdfs, hive metastore, hive table, kafka, mongoDB, mySQL  |
-    | tweet stream |   kafka + Schema Registry                    |                  confluent kakaf-avro-consumer                      |
+    |    Sources   |                  Pipelines                   |                               Sinks                                    |
+    | ------------ | -------------------------------------------- | ---------------------------------------------------------------------- |
+    |    vmstat    |   flume => kafka => spark structured stream  |   console/hdfs/hive metastore/hive table/kafka consumer/mongoDB/mySQL  |
+    | tweet stream |   kafka => spark structured stream           |   console/hdfs/hive metastore/hive table/kafka consumer/mongoDB/mySQL  |
+    | tweet stream |   kafka + Schema Registry                    |   confluent kakaf-avro-consumer/kafka consumer			   |
 
 ### Built With*
 * [Scala 2.12.0](https://www.scala-lang.org/download/2.12.10.html)

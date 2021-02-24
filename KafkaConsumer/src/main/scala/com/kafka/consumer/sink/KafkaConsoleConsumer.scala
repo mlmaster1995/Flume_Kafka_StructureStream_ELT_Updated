@@ -21,14 +21,16 @@ import org.apache.kafka.clients.consumer.KafkaConsumer
 import tweet.kafka.avro.Tweet
 
 import java.time.Duration
+import java.util
 
 object KafkaConsoleConsumer extends Serializable with App{
   // flag for avro schema consumer
-  val withAvroSchema:Boolean= false
+  val withAvroSchema:Boolean= true
 
   // getting consumer instance with proper config
   val consumer = if(withAvroSchema) new KafkaConsumer[String, Tweet](setConsumerProps(kafkaAvroConsumerConfig)) else new KafkaConsumer[String, String](setConsumerProps(kafkaBasicConsumerConfig))
-  val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetTopic") else kafkaConsumerMessageProps("tweetAvro")
+  val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetAvroTopic") else kafkaConsumerMessageProps("tweetTopic")
+  consumer.subscribe(util.Arrays.asList(consumerTopic))
 
   // polling messages
   while(true){
