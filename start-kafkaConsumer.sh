@@ -10,12 +10,14 @@
 #limitations under the License.
 
 #*********************************************************************#
-# - vmstate_flume_kafka.conf is in the git repo                       #
-# - ".conf" file should be in the same path as this bash file         #
+# - start kafka consumer				              #
+# - The jar file is not uploaded into repo                            #
+# - KafkaConsumer-assembly-0.1.jar will be generated after	      #
+# sbt assembly                                                        #
 #*********************************************************************#
 
 #! /usr/bin/bash
 
 clear
 
-flume-ng agent -n agt -f ./vmstate_flume_kafka.conf
+scala KafkaConsumer-assembly-0.1.jar 
