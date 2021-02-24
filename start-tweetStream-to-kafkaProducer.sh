@@ -9,6 +9,13 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
+#*********************************************************************#
+# - start twitter stream and ingest to kafka producer                 #
+# - The jar file is not uploaded into repo                            #
+# - Twitter_Stream_Source-assembly-0.1.jar will be generated after    #
+# sbt assembly                                                        #
+#*********************************************************************#
+
 #! /usr/bin/bash
 
 clear
