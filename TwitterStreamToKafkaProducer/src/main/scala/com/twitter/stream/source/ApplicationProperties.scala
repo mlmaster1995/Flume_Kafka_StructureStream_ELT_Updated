@@ -20,13 +20,13 @@ object ApplicationProperties extends Serializable {
   type PropType = Map[String, String]
 
   // props from twitter API account
-//  val twitterAPIProps:PropType = Map(
-//    "API_key" -> "...",
-//    "API_secrete_key" -> "...",
-//    "Bear_token" -> "...",
-//    "Access_token" -> "...",
-//    "Access_token_secret" -> "...",
-//  )
+  val twitterAPIProps:PropType = Map(
+    "API_key" -> "...",
+    "API_secrete_key" -> "...",
+    "Bear_token" -> "...",
+    "Access_token" -> "...",
+    "Access_token_secret" -> "...",
+  )
 
 
   // basic props for kafka producer config, more props could be added for more configs
