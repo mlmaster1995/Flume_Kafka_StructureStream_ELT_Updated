@@ -24,17 +24,21 @@ import java.time.Duration
 import java.util
 
 object KafkaConsoleConsumer extends Serializable with App{
-  // flag for avro schema consumer
-  val withAvroSchema:Boolean= true
+  /*
+   - flag for avro schema consumer
+   - only tweet stream has avro schema, vmstat and covid19 data srouces have no avro schema
+  */
+  val withAvroSchema:Boolean= false
+  val topic = kafkaConsumerMessageProps("covid19Topic")
 
   // getting consumer instance with proper config
   val consumer = if(withAvroSchema) new KafkaConsumer[String, Tweet](setConsumerProps(kafkaAvroConsumerConfig)) else new KafkaConsumer[String, String](setConsumerProps(kafkaBasicConsumerConfig))
-  val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetAvroTopic") else kafkaConsumerMessageProps("tweetTopic")
+  val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetAvroTopic") else topic
   consumer.subscribe(util.Arrays.asList(consumerTopic))
 
   // polling messages
   while(true){
-    val consumerRecords = consumer.poll(Duration.ofMillis(1000))
+    val consumerRecords = consumer.poll(Duration.ofMillis(5000))
     consumerRecords.forEach(record => println(s"partitionId: ${record.partition} offset: ${record.offset} key: ${record.key} value: ${record.value}"))
   }
 }

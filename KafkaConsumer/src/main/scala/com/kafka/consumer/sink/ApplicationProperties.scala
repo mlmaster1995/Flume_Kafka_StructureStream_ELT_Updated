@@ -48,6 +48,7 @@ object ApplicationProperties extends Serializable {
   val kafkaConsumerMessageProps: PropType = Map(
     "tweetTopic"->"tweet",
     "tweetAvroTopic" ->"tweetAvro",
+    "covid19Topic"->"covidSummary",
   )
 
 }
