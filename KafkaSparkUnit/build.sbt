@@ -1,3 +1,4 @@
+
 name := "Flume_Kafka_Spark_ELT"
 
 version := "0.1"
@@ -32,4 +33,26 @@ libraryDependencies += "org.mongodb.spark" %% "mongo-spark-connector" % "3.0.1"
 
 artifactName := { (sv: ScalaVersion, module: ModuleID, artifact: Artifact) =>
   artifact.name + "_" + sv.binary + "-" + sparkVersion + "_" + module.revision + "." + artifact.extension
+}
+
+// merge strategy SBT assemble
+assemblyMergeStrategy in assembly := {
+  case PathList("jackson-annotations-2.10.5.jar", xs @ _*) => MergeStrategy.last
+  case PathList("jackson-core-2.10.5.jar", xs @ _*) => MergeStrategy.last
+  case PathList("jackson-databind-2.10.5.1.jar", xs @ _*) => MergeStrategy.last
+  case PathList("jackson-dataformat-csv-2.10.5.jar", xs @ _*) => MergeStrategy.last
+  case PathList("jackson-datatype-jdk8-2.10.5.jar", xs @ _*) => MergeStrategy.last
+  case PathList("jackson-module-paranamer-2.10.5.jar", xs @ _*) => MergeStrategy.last
+
+  case PathList("netty-buffer-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-codec-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-common-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-handler-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-resolver-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-transport-native-epoll-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-transport-native-unix-common-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+  case PathList("netty-transport-4.1.48.Final.jar", xs @ _*) => MergeStrategy.last
+
+  case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
+  case _ => MergeStrategy.first
 }
