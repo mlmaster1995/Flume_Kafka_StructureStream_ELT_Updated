@@ -16,42 +16,35 @@ See the License for the specific language governing permissions and
 
 package com.twitter.stream.source
 
-import com.twitter.stream.source.ApplicationProperties.{kafkaProducerProps, twitterAPIProperties}
-import com.twitter.stream.source.TwitterStreamUtils.{concatTweetData, getTweetConfig, getTweetStream, schemaTweetData, writeToKafkaProducer, writeToKafkaProducerAvro}
+import com.twitter.stream.source.ApplicationProperties.{kafkaAvroProducerConfig, kafkaBasicProducerConfig, kafkaProducerMessageProps, twitterAPIProps}
+import com.twitter.stream.source.TwitterStreamUtils.{concatTweetData, getTweetConfig, getTweetStream, putTweetDataIntoSchema, writeToAvroKafkaProducer, writeToKafkaProducer}
 import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener, TwitterStream}
 
 object TwitterStreamToKafkaProducer extends Serializable with App{
+  // set avro schema flag
+  val withAvroSchema:Boolean = false
+
   // set up twitter api config
-  val config = getTweetConfig(api_key = twitterAPIProperties("API_key"),
-                              api_secret_key = twitterAPIProperties("API_secrete_key"),
-                              access_token = twitterAPIProperties("Access_token"),
-                              access_token_secret = twitterAPIProperties("Access_token_secret"))
+  val config = getTweetConfig(twitterAPIProps("API_key"), twitterAPIProps("API_secrete_key"), twitterAPIProps("Access_token"), twitterAPIProps("Access_token_secret"))
+
   // get twitterStream instance
   val twitterStream: TwitterStream = getTweetStream(config)
-  // with schema or not
-  val withAvro:Boolean = true
-  /*
-   - set up the tweet status
-   - "writeToKafkaProducer" is to produce messages in the plain string
-   - "writeToKafkaProducerAvro" is to produce messages with certain schema via Schema Registry
-  */
+
+  // set up the tweet status
   twitterStream.addListener(new StatusListener() {
-
-    override def onStatus(status: Status): Unit =  {
-      if(!withAvro)
-        writeToKafkaProducer(mode=kafkaProducerProps("mode"), bootstrap= kafkaProducerProps("brokers"), ack= kafkaProducerProps("ack"), retry = kafkaProducerProps("retries"), linger= kafkaProducerProps("linger"),
-          batchSize = kafkaProducerProps("batchSize"), kafkaTopic = kafkaProducerProps("topic"), message = concatTweetData(status, kafkaProducerProps("delimiter")))
-      else
-        writeToKafkaProducerAvro(mode=kafkaProducerProps("mode"), schemaRegistryURL= kafkaProducerProps("schemaRegistryURL"),bootstrap= kafkaProducerProps("brokers"), ack= kafkaProducerProps("ack"),
-          retry = kafkaProducerProps("retries"), linger= kafkaProducerProps("linger"), batchSize = kafkaProducerProps("batchSize"), kafkaTopic = kafkaProducerProps("topic"), message = schemaTweetData(status))
+    // extract and process tweet stream data
+    override def onStatus(status: Status): Unit = {
+      if (withAvroSchema) writeToAvroKafkaProducer(kafkaAvroProducerConfig, kafkaProducerMessageProps("mode"), kafkaProducerMessageProps("tweetAvroTopic"), putTweetDataIntoSchema(status))
+      else writeToKafkaProducer(kafkaBasicProducerConfig, kafkaProducerMessageProps("mode"), kafkaProducerMessageProps("tweetTopic"), concatTweetData(status, kafkaProducerMessageProps("delimiter")))
     }
-
+    // ...
     override def onDeletionNotice(statusDeletionNotice: StatusDeletionNotice): Unit = {}
     override def onTrackLimitationNotice(numberOfLimitedStatuses: Int): Unit = {}
     override def onScrubGeo(userId: Long, upToStatusId: Long): Unit = {}
     override def onStallWarning(warning: StallWarning): Unit = {}
     override def onException(ex: Exception): Unit = {}
   })
+
   // start to sample english tweets
-  twitterStream.sample(twitterAPIProperties("language"))
+  twitterStream.sample(twitterAPIProps("language"))
 }

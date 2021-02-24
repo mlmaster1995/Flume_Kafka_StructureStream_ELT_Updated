@@ -19,26 +19,46 @@ package com.twitter.stream.source
 object ApplicationProperties extends Serializable {
   type PropType = Map[String, String]
 
-  val twitterAPIProperties:PropType = Map(
-    "API_key" -> "...",
-    "API_secrete_key" -> "...",
-    "Bear_token" -> "...",
-    "Access_token" -> "...",
-    "Access_token_secret" -> "...",
-  )
+  // props from twitter API account
+//  val twitterAPIProps:PropType = Map(
+//    "API_key" -> "...",
+//    "API_secrete_key" -> "...",
+//    "Bear_token" -> "...",
+//    "Access_token" -> "...",
+//    "Access_token_secret" -> "...",
+//  )
 
 
   // basic props for kafka producer config, more props could be added for more configs
-  val kafkaProducerProps: Map[String, String] = Map(
-    "schemaRegistryURL" -> "http://localhost:8081", // schema registry listen port
-    "delimiter" -> "&&&&",                          // delimiter used to concat all tweet info into an string
-    "mode" -> "async",                              // available modes: forget-and-fire, sync, async
-    "brokers" -> "localhost:9101",
-    "topic" -> "tweetAvro",
-    "ack" -> "1",                                    // ack: forget-and-fire & 0, sync & 1, async & 1
-    "retries" ->"1",                                 // retry
-    "linger" -> "1",                                 // linger time
-    "batchSize" -> "16384"                           // batch size
+  var kafkaBasicProducerConfig: PropType = Map(
+    "bootstrap.servers" -> "localhost:9101",
+    "key.serializer" -> "org.apache.kafka.common.serialization.StringSerializer",
+    "value.serializer" -> "org.apache.kafka.common.serialization.StringSerializer",
+    "acks" -> "1",                                                                    // !!!ack: forget-and-fire & 0, sync & 1, async & 1
+    "retries" ->"1",
+    "linger.ms" -> "1",
+    "batchSize" -> "16384"
+  )
+
+
+  // props for kafka producer with avro schema
+  val kafkaAvroProducerConfig:PropType =Map(
+    "bootstrap.servers" -> "localhost:9101",
+    "schema.registry.url" -> "http://localhost:8081",
+    "key.serializer" -> "io.confluent.kafka.serializers.KafkaAvroSerializer",
+    "value.serializer"-> "io.confluent.kafka.serializers.KafkaAvroSerializer",
+    "acks" -> "1",                                                                    // !!!ack: 0 & mode= forget-and-fire, 1 & mode = sync,  1 & mode = async
+    "retries" ->"1",
+    "linger.ms" -> "1",
+    "batchSize" -> "16384"
+  )
+
+  // other props for kafka producer
+  val kafkaProducerMessageProps:PropType =Map(
+    "delimiter" -> "&&&&",                                                            // delimiter used to concat all tweet info into an string
+    "mode" -> "async",                                                                // !!!mode: forget-and-fire & ack=0, sync & ack=1, async & ack=1
+    "tweetTopic"->"tweet",
+    "tweetAvroTopic" ->"tweetAvro"
   )
 
 }

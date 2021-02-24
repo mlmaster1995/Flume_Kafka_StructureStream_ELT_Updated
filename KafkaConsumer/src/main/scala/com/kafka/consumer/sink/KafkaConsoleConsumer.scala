@@ -15,7 +15,7 @@ limitations under the License.
 */
 package com.kafka.consumer.sink
 
-import com.kafka.consumer.sink.ApplicationProperties.{kafkaAvroConsumerProps, kafkaConsumerProps, kafkaConsumerTopics}
+import com.kafka.consumer.sink.ApplicationProperties.{kafkaAvroConsumerConfig, kafkaBasicConsumerConfig, kafkaConsumerMessageProps}
 import com.kafka.consumer.sink.KafkaConsumerUtils.setConsumerProps
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import tweet.kafka.avro.Tweet
@@ -27,8 +27,8 @@ object KafkaConsoleConsumer extends Serializable with App{
   val withAvroSchema:Boolean= false
 
   // getting consumer instance with proper config
-  val consumer = if(withAvroSchema) new KafkaConsumer[String, Tweet](setConsumerProps(kafkaAvroConsumerProps)) else new KafkaConsumer[String, String](setConsumerProps(kafkaConsumerProps))
-  val consumerTopic = if(withAvroSchema) kafkaConsumerTopics("tweetTopic") else kafkaConsumerTopics("tweetAvro")
+  val consumer = if(withAvroSchema) new KafkaConsumer[String, Tweet](setConsumerProps(kafkaAvroConsumerConfig)) else new KafkaConsumer[String, String](setConsumerProps(kafkaBasicConsumerConfig))
+  val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetTopic") else kafkaConsumerMessageProps("tweetAvro")
 
   // polling messages
   while(true){

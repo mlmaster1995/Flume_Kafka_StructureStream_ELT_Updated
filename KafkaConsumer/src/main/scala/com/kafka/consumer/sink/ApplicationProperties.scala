@@ -20,7 +20,7 @@ object ApplicationProperties extends Serializable {
   type PropType = Map[String, String]
 
   // props for basic kafka consumer
-  val kafkaConsumerProps: PropType = Map(
+  val kafkaBasicConsumerConfig: PropType = Map(
     "bootstrap.servers" -> "localhost:9101",
     "key.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer",
     "value.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer",
@@ -32,20 +32,20 @@ object ApplicationProperties extends Serializable {
   )
 
   // props for avro kafka consumer
-  val kafkaAvroConsumerProps: PropType = Map(
-    "schemaRegistryURL" -> "http://localhost:8081", // schema registry listen port
-    "bootstrapServers" -> "localhost:9101",
-    "keyAvroDeserializer"-> "io.confluent.kafka.serializers.KafkaAvroDeserializer",
-    "valueAvroDeserializer"-> "io.confluent.kafka.serializers.KafkaAvroDeserializer",
-    "AvroDeserizerConfig" -> "true",
-    "groupID"-> "grp-1",
-    "enableAutoCommit" -> "true",
-    "autoCommitIntervalMs" -> "1000",
-    "sessionTimeoutMs"-> "15000",
-    "maxPollRecords" -> "100",
+  val kafkaAvroConsumerConfig: PropType = Map(
+    "schema.registry.url" -> "http://localhost:8081",
+    "bootstrap.servers" -> "localhost:9101",
+    "key.deserializer"-> "io.confluent.kafka.serializers.KafkaAvroDeserializer",
+    "value.deserializer"-> "io.confluent.kafka.serializers.KafkaAvroDeserializer",
+    "specific.avro.reader" -> "true",
+    "group.id"-> "grp-1",
+    "enable.auto.commit" -> "true",
+    "auto.commit.interval.ms" -> "1000",
+    "session.timeout.ms"-> "15000",
+    "max.poll.records" -> "100",
   )
 
-  val kafkaConsumerTopics: PropType = Map(
+  val kafkaConsumerMessageProps: PropType = Map(
     "tweetTopic"->"tweet",
     "tweetAvroTopic" ->"tweetAvro",
   )
