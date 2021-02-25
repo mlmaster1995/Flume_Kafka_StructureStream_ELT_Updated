@@ -22,14 +22,17 @@ object ApplicationProperties extends Serializable {
 
   val sparkProperties: PropType = Map(
     "mode" -> "local",
-    "name" -> "eltPipeline"
+    "name" -> "elt_pipeline"
   )
 
   val kafkaProperties: PropType = Map(
-    "brokers" -> "localhost:9092",
-    "topic_I" -> "exec",
-    "topic_II" -> "toKafka",
-    "topic_III" -> "tweet",
+    "brokers" -> "localhost:9101",
+    "topicVmstat" -> "exec",
+    "topicVmstatKafka" -> "toKafka",
+    "topicTweet" -> "tweet",
+    "topicCovid19" -> "covidSummary",
+    "delimiterCovid19" -> "&&&",
+    "delimiterTweet" -> "&&&&"
   )
 
   val mySQLProperties: PropType = Map(
@@ -45,7 +48,8 @@ object ApplicationProperties extends Serializable {
 
 
   val consoleProperties: PropType = Map(
-    "mode" -> "append"
+    "modeAppend" -> "append",
+    "modeComplete" -> "complete"
   )
 
   val hdfsProperties: PropType = Map(

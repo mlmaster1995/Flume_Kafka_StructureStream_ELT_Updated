@@ -25,7 +25,7 @@ object TweetToConsole extends Serializable {
     // create a spark session
     val spark = getSparkSession
     // extract data
-    val dataSource: sql.DataFrame = ELTComponents.extract(spark, kafkaProperties("topic_III"), extractFunc)
+    val dataSource: sql.DataFrame = ELTComponents.extract(spark, kafkaProperties("topicTweet"), extractFunc)
     // transform data
     val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)
     // load data
