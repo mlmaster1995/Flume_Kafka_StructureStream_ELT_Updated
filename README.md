@@ -49,7 +49,7 @@ as [Built With](#built-with).
     | covid19 batch data  |   kafka producer                                      |   kafka consumer                                             |
 
 ### Built With
-* [Scala 2.12.0](https://www.scala-lang.org/download/2.12.10.html)
+* [Scala 2.12.10](https://www.scala-lang.org/download/2.12.10.html)
 * [Apache Spark 3.0.1](https://spark.apache.org/docs/2.1.1/)
 * [Apache Flume 1.9.0](https://flume.apache.org/releases/1.5.2.html)
 * [Apache Kafka 2.7.0](https://kafka.apache.org/0102/documentation.html)
