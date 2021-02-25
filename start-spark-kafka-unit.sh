@@ -36,5 +36,5 @@ ${root_path}/slf4j-api-1.7.25.jar,\
 ${root_path}/slf4j-simple-1.7.25.jar,\
 ${root_path}/mongo-scala-driver_2.12-4.1.1.jar,\
 ${root_path}/mongo-spark-connector_2.12-3.0.1.jar \
-kafkasparkunit_2.12-3.0.1_0.1.jar
+./KafkaSparkUnit/target/scala-2.12/kafkasparkunit_2.12-3.0.1_0.1.jar
 

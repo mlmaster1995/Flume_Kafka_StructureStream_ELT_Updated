@@ -13,11 +13,11 @@
 # - start twitter stream and ingest to kafka producer                 #
 # - The jar file is not uploaded into repo                            #
 # - Twitter_Stream_Source-assembly-0.1.jar will be generated after    #
-# sbt assembly                                                        #
+# 'sbt assembly' in the target folder                                 #
 #*********************************************************************#
 
 #! /usr/bin/bash
 
 clear
 
-scala  Twitter_Stream_Source-assembly-0.1.jar
+scala  ./TwitterStreamToKafkaProducer/target/scala-2.12/Twitter_Stream_Source-assembly-0.1.jar

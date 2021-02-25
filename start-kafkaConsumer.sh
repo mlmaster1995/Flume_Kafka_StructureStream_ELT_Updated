@@ -13,11 +13,11 @@
 # - start kafka consumer				                                      #
 # - The jar file is not uploaded into repo                            #
 # - KafkaConsumer-assembly-0.1.jar will be generated after	          #
-# sbt assembly                                                        #
+# 'sbt assembly' in the target folder                                 #
 #*********************************************************************#
 
 #! /usr/bin/bash
 
 clear
 
-scala KafkaConsumer-assembly-0.1.jar 
+scala ./KafkaConsumer/target/scala-2.12/KafkaConsumer-assembly-0.1.jar
