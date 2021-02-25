@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 
 package com.kafka.spark.oop.pipelineDev
 
-import com.kafka.spark.oop.pipelineDev.CustomSinkClasses.WriteToKafka
+import com.kafka.spark.oop.pipelineDev.CustomSinkClasses.WriteToBasicKafkaProducer
 import com.mongodb.spark.sql.toMongoDataFrameWriterFunctions
 import org.apache.spark.sql
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
@@ -51,10 +51,6 @@ object ELTComponents extends Serializable {
     def toHDFS(source: sql.DataFrame, hdfsPath: String, checkpointPath: String, format: String, mode: String, compressionType: String): Unit =
       source.writeStream.format(format).outputMode(mode).option("compression", compressionType).option("path", hdfsPath).option("checkpointLocation", checkpointPath).start().awaitTermination()
 
-    // write data stre0am to hive metastore
-    def toHiveMetaStore(source: sql.DataFrame, hiveDataPath: String, checkpiontPath: String, format: String, mode: String): Unit =
-      source.writeStream.format(format).outputMode(mode).option("path", hiveDataPath).option("checkpointLocation", checkpiontPath).start().awaitTermination()
-
     // write data to hiveTable
     def toHiveTable(source: sql.DataFrame, format: String, hiveTableMode: String, compression: String, database: String, table: String, partition: Int = 1): Unit =
       source.writeStream.foreachBatch({ (batchDF: DataFrame, batchId: Long) =>
@@ -63,7 +59,7 @@ object ELTComponents extends Serializable {
 
     // write data stream to kafka
     def toKafka(source: sql.DataFrame, topic: String, servers: String, extract_func: Row => String): Unit =
-      source.writeStream.foreach(new WriteToKafka(topic, servers, extract_func)).start().awaitTermination()
+      source.writeStream.foreach(new WriteToBasicKafkaProducer(topic, servers, extract_func)).start().awaitTermination()
 
     // write data stream to mySQL
     def toMysql(source: sql.DataFrame, url: String, db: String, table: String, user: String, password: String, driver: String, mode: String): Unit =

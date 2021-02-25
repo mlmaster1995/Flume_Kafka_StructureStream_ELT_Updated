@@ -1,2 +1,57 @@
 [0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToHDFS$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToHiveMetaStore$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToHDFS$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToKafka$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	twitterPipeUtils$$typecreator1$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToMongoDB.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	twitterPipeUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToConsole.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Covid19PipeUtils$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToConsole$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatPipeUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ELTComponents$Load$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToKafka.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToHiveMetaStore$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	twitterPipeUtils$$typecreator2$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatPipeUtils$$typecreator1$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ELTComponents.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CustomSinkClasses.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToHiveTable$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToMySQL.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToHiveMetaStore.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToHiveTable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CovidToHDFS$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToMySQL$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToHiveTable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToHDFS.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToMySQL.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CovidToHDFS.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToHDFS.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CustomSinkClasses$WriteToKafka.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToConsole.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToConsole$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToMongoDB.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	twitterPipeUtils$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CovidToHDFS$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ELTComponents$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatPipeUtils$$typecreator2$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Covid19PipeUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatPipeUtils$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToKafka$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PipelineUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CovidToConsole$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToHiveTable$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToMongoDB$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToMongoDB$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToMySQL$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CustomSinkClasses$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CovidToConsole.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TweetToKafka.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	vmstatToHiveMetaStore.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes.bak[0m

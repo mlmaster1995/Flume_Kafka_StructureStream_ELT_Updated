@@ -185,8 +185,12 @@ case object Covid19PipeUtils extends Serializable with PipelineUtils{
   }
 
   // user-define-function to specify the extract function for kafka sink writer
-  def extractRowDataForKafkaWriter (row: Row):String = "haha"
-
+  def extractRowDataForKafkaWriter (row: Row):String = {
+    val rowMap: Map[String, AnyVal] = row.getValuesMap(row.schema.fieldNames)
+    s"${rowMap("province")}|${rowMap("active_cases")}|${rowMap("active_cases_change")}|${rowMap("avaccine")}|${rowMap("cases")}|${rowMap("cumulative_avaccine")}|${rowMap("cumulative_cases")}" +
+      s"|${rowMap("cumulative_cvaccine")}|${rowMap("cumulative_deaths")}|${rowMap("cumulative_dvaccine")}|${rowMap("cumulative_recovered")}|${rowMap("cumulative_testing")}" +
+      s"|${rowMap("cvaccine")}|${rowMap("date")}|${rowMap("deaths")}|${rowMap("dvaccine")}|${rowMap("recovered")}|${rowMap("testing")}|${rowMap("testing_info")}"
+  }
 }
 
 

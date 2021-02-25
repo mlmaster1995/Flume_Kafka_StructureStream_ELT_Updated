@@ -27,7 +27,7 @@ object vmstatToConsole extends Serializable {
   val spark = getSparkSession
 
   // extract data
-  val dataSource: sql.DataFrame = ELTComponents.extract(spark, kafkaProperties("topic_I"), extractFunc)
+  val dataSource: sql.DataFrame = ELTComponents.extract(spark, kafkaProperties("topicVmstat"), extractFunc)
 
   // transform data
   val transformedSource: sql.DataFrame = ELTComponents.transform(spark, dataSource, transformFunc)

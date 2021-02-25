@@ -25,7 +25,7 @@ object CustomSinkClasses extends Serializable {
   /*
    - write data to kafka
   */
-  class WriteToKafka(val topic: String, val servers: String, val func: Row => String) extends ForeachWriter[Row] {
+  class WriteToBasicKafkaProducer(val topic: String, val servers: String, val func: Row => String) extends ForeachWriter[Row] {
     // set up kafka properties
     val kafkaProperties = new Properties()
     kafkaProperties.put("bootstrap.servers", servers)
