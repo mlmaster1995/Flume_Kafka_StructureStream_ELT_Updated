@@ -2,8 +2,7 @@ name := "KafkaSparkUnit"
 
 version := "0.1"
 
-scalaVersion := "2.12.0"
-
+scalaVersion := "2.12.10"
 
 val sparkVersion = "3.0.1"
 
