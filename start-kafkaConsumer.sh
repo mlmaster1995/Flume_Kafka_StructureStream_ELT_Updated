@@ -10,9 +10,9 @@
 #limitations under the License.
 
 #*********************************************************************#
-# - start kafka consumer				              #
+# - start kafka consumer				                                      #
 # - The jar file is not uploaded into repo                            #
-# - KafkaConsumer-assembly-0.1.jar will be generated after	      #
+# - KafkaConsumer-assembly-0.1.jar will be generated after	          #
 # sbt assembly                                                        #
 #*********************************************************************#
 

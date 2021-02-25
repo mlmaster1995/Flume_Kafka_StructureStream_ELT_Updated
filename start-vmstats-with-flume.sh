@@ -10,6 +10,7 @@
 #limitations under the License.
 
 #*********************************************************************#
+# - start extract system data stream with Flume                       #
 # - vmstate_flume_kafka.conf is in the git repo                       #
 # - ".conf" file should be in the same path as this bash file         #
 #*********************************************************************#
