@@ -30,3 +30,4 @@
 [0m[[0m[0mdebug[0m] [0m[0m  Load.apply: Def.make(settings)... took 391.211903ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Load.apply: structureIndex took 130.582369ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Load.apply: mkStreams took 1.783773ms[0m
+[0m[[0m[0minfo[0m] [0m[0mloading global plugins from /home/ky/.sbt/1.0/plugins[0m
