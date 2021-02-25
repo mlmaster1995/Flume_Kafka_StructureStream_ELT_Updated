@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flume_Kafka_Spark_ELT.iml" filepath="$PROJECT_DIR$/.idea/modules/Flume_Kafka_Spark_ELT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Flume_Kafka_Spark_ELT-build.iml" filepath="$PROJECT_DIR$/.idea/modules/Flume_Kafka_Spark_ELT-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KafkaSparkUnit.iml" filepath="$PROJECT_DIR$/.idea/modules/KafkaSparkUnit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KafkaSparkUnit-build.iml" filepath="$PROJECT_DIR$/.idea/modules/KafkaSparkUnit-build.iml" />
     </modules>
   </component>
 </project>

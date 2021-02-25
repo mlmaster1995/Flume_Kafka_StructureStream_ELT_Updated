@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="Flume_Kafka_Spark_ELT" />
+    <profile name="sbt 1" modules="KafkaSparkUnit" />
   </component>
 </project>

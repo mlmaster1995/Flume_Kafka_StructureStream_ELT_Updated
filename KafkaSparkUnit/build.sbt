@@ -1,9 +1,9 @@
-
-name := "Flume_Kafka_Spark_ELT"
+name := "KafkaSparkUnit"
 
 version := "0.1"
 
-scalaVersion := "2.12.10"
+scalaVersion := "2.12.0"
+
 
 val sparkVersion = "3.0.1"
 
