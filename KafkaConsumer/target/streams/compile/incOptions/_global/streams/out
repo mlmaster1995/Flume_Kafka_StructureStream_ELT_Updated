@@ -1,20 +1,17 @@
 [0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaConsumer/target/scala-2.12/classes.bak[0m
 [0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$$anon$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ApplicationProperties.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	KafkaConsoleConsumer$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaConsumer/target/scala-2.12/classes.bak[0m

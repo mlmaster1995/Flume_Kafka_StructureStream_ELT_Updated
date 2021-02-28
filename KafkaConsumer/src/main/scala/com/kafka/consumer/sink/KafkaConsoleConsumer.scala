@@ -31,11 +31,13 @@ object KafkaConsoleConsumer extends Serializable with App{
    - only tweet stream has avro schema, vmstat and covid19 data srouces have no avro schema
   */
   val withAvroSchema:Boolean= false
-  val topic = kafkaConsumerMessageProps("covid19Topic")
+  val topic = kafkaConsumerMessageProps("tweetTopic")
 
   // getting consumer instance with proper config
   val consumer = if(withAvroSchema) new KafkaConsumer[String, Tweet](setConsumerProps(kafkaAvroConsumerConfig)) else new KafkaConsumer[String, String](setConsumerProps(kafkaBasicConsumerConfig))
   val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetAvroTopic") else topic
+
+  // subscribe the topic
   consumer.subscribe(util.Arrays.asList(consumerTopic))
 
   // clean exit the consumer

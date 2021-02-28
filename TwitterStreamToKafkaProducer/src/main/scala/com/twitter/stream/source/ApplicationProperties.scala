@@ -29,6 +29,7 @@ object ApplicationProperties extends Serializable {
   )
 
 
+
   // basic props for kafka producer config, more props could be added for more configs
   var kafkaBasicProducerConfig: PropType = Map(
     "bootstrap.servers" -> "localhost:9101",
