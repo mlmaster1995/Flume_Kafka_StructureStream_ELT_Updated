@@ -18,6 +18,7 @@ package com.kafka.consumer.sink
 import com.kafka.consumer.sink.ApplicationProperties.{kafkaAvroConsumerConfig, kafkaBasicConsumerConfig, kafkaConsumerMessageProps}
 import com.kafka.consumer.sink.KafkaConsumerUtils.setConsumerProps
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.common.errors.WakeupException
 import tweet.kafka.avro.Tweet
 
 import java.time.Duration
@@ -36,9 +37,28 @@ object KafkaConsoleConsumer extends Serializable with App{
   val consumerTopic = if(withAvroSchema) kafkaConsumerMessageProps("tweetAvroTopic") else topic
   consumer.subscribe(util.Arrays.asList(consumerTopic))
 
+  // clean exit the consumer
+  Runtime.getRuntime.addShutdownHook(
+    new Thread(
+      () => {
+        println("\n!!!!!!!!!!!!!!!safely exit is called...!!!!!!!!!!!!!!!!!!")
+        consumer.wakeup()
+      }
+    )
+  )
+
   // polling messages
-  while(true){
-    val consumerRecords = consumer.poll(Duration.ofMillis(5000))
-    consumerRecords.forEach(record => println(s"partitionId: ${record.partition} offset: ${record.offset} key: ${record.key} value: ${record.value}"))
+  try {
+    while (true) {
+      val consumerRecords = consumer.poll(Duration.ofMillis(5000))
+      consumerRecords.forEach(record => println(s"partitionId: ${record.partition} offset: ${record.offset} key: ${record.key} value: ${record.value}"))
+    }
+  }
+  catch{
+    case e: WakeupException => e.printStackTrace()
+    case e: Exception => e.printStackTrace()
+  }
+  finally {
+    consumer.close()
   }
 }
