@@ -17,7 +17,8 @@ package com.kafka.consumer.sink
 
 import com.kafka.consumer.sink.ApplicationProperties.{kafkaAvroConsumerConfig, kafkaBasicConsumerConfig, kafkaConsumerMessageProps}
 import com.kafka.consumer.sink.KafkaConsumerUtils.setConsumerProps
-import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.clients.consumer.{KafkaConsumer, OffsetAndMetadata, OffsetCommitCallback}
+import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.errors.WakeupException
 import tweet.kafka.avro.Tweet
 
@@ -47,11 +48,32 @@ object KafkaConsoleConsumer extends Serializable with App{
     )
   )
 
+  // set up a current offset map
+  var currentOffset:util.Map[TopicPartition, OffsetAndMetadata] = new util.HashMap()
+
+  // set up async call_back function -> print or "log" once exception is thrown
+  val asyncCallBack = new OffsetCommitCallback {
+    override def onComplete(offsets: util.Map[TopicPartition, OffsetAndMetadata], exception: Exception): Unit = if(exception!=null) println(s"failed commit offset info:${offsets}")
+  }
+
   // polling messages
   try {
     while (true) {
       val consumerRecords = consumer.poll(Duration.ofMillis(5000))
-      consumerRecords.forEach(record => println(s"partitionId: ${record.partition} offset: ${record.offset} key: ${record.key} value: ${record.value}"))
+
+      consumerRecords.forEach(record => {
+        // process messages
+        println(s"partitionId: ${record.partition} offset: ${record.offset} key: ${record.key} value: ${record.value}")
+
+        // fill up the offset map
+        val topicPartition:TopicPartition = new TopicPartition(record.topic(), record.partition())
+        val nextOffset:Long = record.offset()+1L
+        val offSetCommit= new OffsetAndMetadata(nextOffset)
+        currentOffset.put(topicPartition, offSetCommit)
+
+        // async commit current offset
+        consumer.commitAsync(currentOffset, asyncCallBack)
+      })
     }
   }
   catch{
