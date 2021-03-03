@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 */
 package com.kafka.spark.oop.pipelineDev
 
-import com.kafka.spark.oop.pipelineDev.ApplicationProperties.kafkaProperties
+import com.kafka.spark.oop.pipelineDev.AppInternalProperties.messageDelimiter
 import org.apache.spark.sql
 import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.spark.sql.functions.{split, udf}
@@ -65,7 +65,7 @@ object TransformClass extends Serializable {
   // transform tweet stream into structured stream
   def transformTweetStream (session: SparkSession, source: sql.DataFrame):sql.DataFrame = {
     import session.implicits._
-    val filterRow = udf { x: String => x.split(kafkaProperties("delimiterTweet")).filter(_!="END") }
+    val filterRow = udf { x: String => x.split(messageDelimiter("delimiterTweet")).filter(_!="END") }
     source
       .select(filterRow('value.cast(StringType)) alias "split_value")
       .select(
@@ -89,7 +89,7 @@ object TransformClass extends Serializable {
   def transformCovid19BatchData (session: SparkSession, source: sql.DataFrame):sql.DataFrame = {
     import session.implicits._
     source
-      .select('timestamp,split('value.cast(StringType),kafkaProperties("delimiterCovid19")) alias "value")
+      .select('timestamp,split('value.cast(StringType),messageDelimiter("delimiterCovid19")) alias "value")
       .select(
         'timestamp,
         'value(15) alias "province",
@@ -111,6 +111,14 @@ object TransformClass extends Serializable {
         'value(16).cast(IntegerType) alias "recovered",
         'value(17).cast(IntegerType) alias "testing",
         'value(18) alias "testing_info")
+  }
+
+  // transform covid19 batch data into kafka producer input
+  def transformCovid19BatchDataForKafkaWriter (row: Row):String = {
+    val rowMap: Map[String, AnyVal] = row.getValuesMap(row.schema.fieldNames)
+    s"${rowMap("province")}|${rowMap("active_cases")}|${rowMap("active_cases_change")}|${rowMap("avaccine")}|${rowMap("cases")}|${rowMap("cumulative_avaccine")}|${rowMap("cumulative_cases")}" +
+      s"|${rowMap("cumulative_cvaccine")}|${rowMap("cumulative_deaths")}|${rowMap("cumulative_dvaccine")}|${rowMap("cumulative_recovered")}|${rowMap("cumulative_testing")}" +
+      s"|${rowMap("cvaccine")}|${rowMap("date")}|${rowMap("deaths")}|${rowMap("dvaccine")}|${rowMap("recovered")}|${rowMap("testing")}|${rowMap("testing_info")}"
   }
 
 }

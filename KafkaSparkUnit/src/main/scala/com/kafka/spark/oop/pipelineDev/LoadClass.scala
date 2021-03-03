@@ -45,7 +45,7 @@ object LoadClass extends Serializable {
     }.outputMode("update").start().awaitTermination()
 
   // write data to mongoDB
-  def toMongoD(source: sql.DataFrame): Unit =
+  def toMongoDB(source: sql.DataFrame): Unit =
     source.writeStream.foreachBatch({ (batchDF: DataFrame, batchId: Long) =>
       batchDF.write.mode("append").mongo()
     }).outputMode("update").start().awaitTermination()
