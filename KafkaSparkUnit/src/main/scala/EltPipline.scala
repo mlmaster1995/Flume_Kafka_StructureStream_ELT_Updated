@@ -13,9 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
   limitations under the License.
 */
-
 import com.kafka.spark.oop.pipelineCollections.PipelineCollect.VmstatToConsolePipleline
-import com.kafka.spark.oop.pipelineDev.projectUtils.{PropType, extractProps, getSparkSession}
+import com.kafka.spark.oop.pipelineDev.projectUtils.{extractProps}
 
 import java.security.InvalidParameterException
 
@@ -23,7 +22,7 @@ object EltPipeline extends Serializable {
 
   def main(args: Array[String]): Unit = {
 
-   // extract all properties from the .properties file
+   // extract all properties from the .properties file before spark session is created
    val configMap = extractProps(args(0))
 
     /*
