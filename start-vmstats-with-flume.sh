@@ -19,4 +19,4 @@
 
 clear
 
-flume-ng agent -n agt -f ./vmstate_flume_kafka.conf
+flume-ng agent -n agt -f ./vmstat_flume_kafka.conf

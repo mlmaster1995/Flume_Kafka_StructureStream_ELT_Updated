@@ -27,7 +27,8 @@ object eltPipline extends Serializable {
 
    /*
     - elt pipeline: vmstat => flume => kafka producer => spark structured stream => console
-    - run "start-vmstats-with-flume.sh" to start the source
+    - run "start-vmstats-with-flume.sh" to start to source
+    - run "start-spark-kafka-unit.sh" to start to sink
    */
    if(configMap("pipeline.source")=="vmstat" && configMap("pipeline.sink")=="console") VmstatToConsolePipleline(configMap).load
    else throw new InvalidParameterException("invalid properties in the pipline selection")
