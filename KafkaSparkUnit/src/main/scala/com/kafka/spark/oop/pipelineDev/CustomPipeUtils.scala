@@ -107,7 +107,7 @@ case object twitterPipeUtils extends Serializable with PipelineUtils{
   }
 
   // user-define-function to specify the extract function based on the source
-  def extractFunc(session: SparkSession, topic:String):sql.DataFrame =
+  def extractFunc(session: SparkSession,topic:String):sql.DataFrame =
     session.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaProperties("brokers")).option("subscribe", topic).load()
 
   // user-define-function to specify the transform function based on the sink
