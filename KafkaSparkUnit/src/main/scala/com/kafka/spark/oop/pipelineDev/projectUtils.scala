@@ -27,8 +27,8 @@ object projectUtils extends Serializable {
   type PropType = Map[String, String]
 
   // extract values from .properties file
-  def extractProps(filePath:String):PropType =
-    Source.fromFile(filePath).getLines().filter(row => ! (row.startsWith("#")) && row.length>0).map(x=>(x.split("=")(0)->x.split("=")(1))).toMap[String, String]
+  def extractProps(filePath:String):PropType=
+    Source.fromFile(filePath).getLines().filter(row => ! (row.startsWith("#")) && row.length>0).map(x=>(x.split("=")(0)->x.split("=")(1))).toMap
 
   // get spark session
   def getSparkSession(configMap:PropType): SparkSession= {

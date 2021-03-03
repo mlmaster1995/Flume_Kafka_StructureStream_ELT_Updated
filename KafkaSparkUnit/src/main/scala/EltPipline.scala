@@ -15,22 +15,24 @@ See the License for the specific language governing permissions and
 */
 
 import com.kafka.spark.oop.pipelineCollections.PipelineCollect.VmstatToConsolePipleline
-import com.kafka.spark.oop.pipelineDev.projectUtils.extractProps
+import com.kafka.spark.oop.pipelineDev.projectUtils.{PropType, extractProps, getSparkSession}
 
 import java.security.InvalidParameterException
 
-object eltPipline extends Serializable {
+object EltPipeline extends Serializable {
 
   def main(args: Array[String]): Unit = {
+
    // extract all properties from the .properties file
    val configMap = extractProps(args(0))
 
-   /*
-    - elt pipeline: vmstat => flume => kafka producer => spark structured stream => console
-    - run "start-vmstats-with-flume.sh" to start to source
-    - run "start-spark-kafka-unit.sh" to start to sink
-   */
-   if(configMap("pipeline.source")=="vmstat" && configMap("pipeline.sink")=="console") VmstatToConsolePipleline(configMap).load
+    /*
+     - elt pipeline: vmstat => flume => kafka producer => spark structured stream => console
+     - run "start-vmstats-with-flume.sh" to start to source
+     - run "start-spark-kafka-unit.sh" to start to sink
+    */
+   if(configMap("pipeline.source")==("vmstat") && configMap("pipeline.sink")==("console")) VmstatToConsolePipleline(configMap).load
+
    else throw new InvalidParameterException("invalid properties in the pipline selection")
 
   }

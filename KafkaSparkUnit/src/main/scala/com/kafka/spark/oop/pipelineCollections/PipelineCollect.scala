@@ -25,7 +25,7 @@ object PipelineCollect extends Serializable {
     // transform data
     val transformedSource: sql.DataFrame = ELTComponents.transform(spark, source, transformFunc)
     // load data
-    def load:Unit = ELTComponents.Load.toConsole(transformedSource, mode = configMap("mode"))
+    def load:Unit = ELTComponents.Load.toConsole(transformedSource, mode = configMap("console.write.mode"))
   }
 
 

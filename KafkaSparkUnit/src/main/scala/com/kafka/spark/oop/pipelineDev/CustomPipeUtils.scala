@@ -44,7 +44,7 @@ case object vmstatPipeUtils extends Serializable with PipelineUtils {
       .appName(s"${sparkProperties("name")}")
       .config("spark.mongodb.input.uri", mongodbProperties("mongoInputURI"))
       .config("spark.mongodb.output.uri", mongodbProperties("mongoOutputURI"))
-      .master(s"${sparkProperties("mode")}")
+      .master(sparkProperties("mode"))
       .enableHiveSupport()
       .getOrCreate()
   }
@@ -101,7 +101,7 @@ case object twitterPipeUtils extends Serializable with PipelineUtils{
       .appName(s"${sparkProperties("name")}")
       .config("spark.mongodb.input.uri", mongodbProperties("mongoInputURI"))
       .config("spark.mongodb.output.uri", mongodbProperties("mongoOutputURI"))
-      .master(s"${sparkProperties("mode")}")
+      .master(sparkProperties("mode"))
       .enableHiveSupport()
       .getOrCreate()
   }
@@ -147,7 +147,7 @@ case object Covid19PipeUtils extends Serializable with PipelineUtils{
       .appName(s"${sparkProperties("name")}")
       .config("spark.mongodb.input.uri", mongodbProperties("mongoInputURI"))
       .config("spark.mongodb.output.uri", mongodbProperties("mongoOutputURI"))
-      .master(s"${sparkProperties("mode")}")
+      .master(sparkProperties("mode"))
       .enableHiveSupport()
       .getOrCreate()
   }
