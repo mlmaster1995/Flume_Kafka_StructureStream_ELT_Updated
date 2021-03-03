@@ -1,9 +1,7 @@
 [0m[[0m[0mdebug[0m] [0m[0mPackaging /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/kafkasparkunit_2.12-3.0.1_0.1.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	EltPipeline.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/EltPipeline.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	EltPipeline$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/EltPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	EtlPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/EtlPipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka[0m
@@ -82,12 +80,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/TweetToKafka.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/TweetToKafka.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/vmstatToKafka$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/vmstatToKafka$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/TweetToKafka$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/TweetToKafka$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/vmstatToKafka.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_KafkaProducer/vmstatToKafka.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$VmstatToConsolePipleline$.class[0m
@@ -130,6 +124,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_hiveTable/vmstatToHiveTable$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$VmstatToKafkaPipleline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$VmstatToKafkaPipleline.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToConsolePipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToConsolePipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$VmstatToConsolePipleline.class[0m
@@ -150,10 +146,12 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToConsolePipeline.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$Covid19ToConsolePipeline$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$Covid19ToConsolePipeline$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_console[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_console[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_console/CovidToConsole$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_console/CovidToConsole$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/source_kafka_spark_console/CovidToConsole.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/source_kafka_spark_console/CovidToConsole.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToKafkaPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToKafkaPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$VmstatToKafkaPipleline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$VmstatToKafkaPipleline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToKafkaPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/com/kafka/spark/oop/pipelineCollections/PipelineCollect$TweetToKafkaPipeline$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	EtlPipeline.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/ky/Documents/hadoop_training/Hadoop_Final_Review_Files/Big_Data_Git/Flume_Kafka_SparkStructureStream_ELT_3.0/KafkaSparkUnit/target/scala-2.12/classes/EtlPipeline.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

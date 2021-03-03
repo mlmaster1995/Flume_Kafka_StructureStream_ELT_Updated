@@ -15,11 +15,13 @@ See the License for the specific language governing permissions and
 */
 package com.kafka.spark.oop.pipelineCollections
 
+import com.kafka.spark.oop.pipelineDev.ApplicationProperties.kafkaProperties
 import com.kafka.spark.oop.pipelineDev.ELTComponents
 import com.kafka.spark.oop.pipelineDev.ExtractClass.extractFromKafkaProducer
-import com.kafka.spark.oop.pipelineDev.LoadClass.toConsole
-import com.kafka.spark.oop.pipelineDev.TransformClass.{transformCovid19BatchData, transformTweetStream, transformVmstatStream}
+import com.kafka.spark.oop.pipelineDev.LoadClass.{toConsole, toKafka}
+import com.kafka.spark.oop.pipelineDev.TransformClass.{transformCovid19BatchData, transformTweetStream, transformTweetStreamForKafkaWriter, transformVmstatForKafkaWriter, transformVmstatStream}
 import com.kafka.spark.oop.pipelineDev.projectUtils.{PropType, getSparkSession}
+import com.kafka.spark.oop.pipelineDev.twitterPipeUtils.extractRowDataForKafkaWriter
 import org.apache.spark.sql
 import org.apache.spark.sql.SparkSession
 
@@ -31,6 +33,7 @@ object PipelineCollect extends Serializable {
     val transformedSource:sql.DataFrame
     def load:Unit
   }
+
   // vmstat => flume => kafka producer => spark structured stream => console
   case class VmstatToConsolePipleline(configMap:PropType) extends BaseETLPipeline{
     val spark = getSparkSession(configMap)
@@ -38,13 +41,15 @@ object PipelineCollect extends Serializable {
     val transformedSource: sql.DataFrame = transformVmstatStream(spark, source)
     def load:Unit = toConsole(transformedSource, mode = configMap("console.write.mode"))
   }
+
   // tweet stream => kafka producer => spark structured stream => console
   case class TweetToConsolePipeline(configMap:PropType) extends BaseETLPipeline{
     val spark = getSparkSession(configMap)
     val source: sql.DataFrame = extractFromKafkaProducer(spark, configMap("kafka.brokers"), configMap("kafka.topic.tweet"))
     val transformedSource: sql.DataFrame = transformTweetStream(spark, source)
-    def load:Unit = ELTComponents.Load.toConsole(transformedSource, mode = configMap("console.write.mode"))
+    def load:Unit = toConsole(transformedSource, mode = configMap("console.write.mode"))
   }
+
   // covid19_batch_data => kafka producer => spark structured stream => console
   case class Covid19ToConsolePipeline(configMap:PropType) extends BaseETLPipeline{
     val spark = getSparkSession(configMap)
@@ -52,6 +57,26 @@ object PipelineCollect extends Serializable {
     val transformedSource: sql.DataFrame = transformCovid19BatchData(spark, source)
     def load:Unit = ELTComponents.Load.toConsole(transformedSource, mode = configMap("console.write.mode"))
   }
+
+
+  // vmstat => flume => kafka producer => spark structured stream => kafka producer
+  case class VmstatToKafkaPipleline(configMap:PropType) extends BaseETLPipeline{
+    val spark = getSparkSession(configMap)
+    val source: sql.DataFrame = extractFromKafkaProducer(spark, configMap("kafka.brokers"), configMap("kafka.topic.vmstat"))
+    val transformedSource: sql.DataFrame = transformVmstatStream(spark, source)
+    def load:Unit = toKafka(transformedSource, configMap("kafka.topic.kafkaProducer"), configMap("kafka.brokers"), extract_func = transformVmstatForKafkaWriter)
+  }
+
+  // tweet stream => kafka producer => spark structured stream => kafka producer
+  case class TweetToKafkaPipeline(configMap:PropType) extends BaseETLPipeline{
+    val spark = getSparkSession(configMap)
+    val source: sql.DataFrame = extractFromKafkaProducer(spark, configMap("kafka.brokers"), configMap("kafka.topic.tweet"))
+    val transformedSource: sql.DataFrame = transformTweetStream(spark, source)
+    def load:Unit = toKafka(transformedSource, configMap("kafka.topic.kafkaProducer"), configMap("kafka.brokers"), extract_func = transformTweetStreamForKafkaWriter)
+  }
+
+
+
 
 
 

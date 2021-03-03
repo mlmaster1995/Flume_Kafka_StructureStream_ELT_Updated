@@ -17,7 +17,7 @@ package com.kafka.spark.oop.pipelineDev
 
 import com.kafka.spark.oop.pipelineDev.ApplicationProperties.kafkaProperties
 import org.apache.spark.sql
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.spark.sql.functions.{split, udf}
 import org.apache.spark.sql.types.{IntegerType, StringType}
 
@@ -54,6 +54,14 @@ object TransformClass extends Serializable {
         $"value"(16) alias "st")
   }
 
+  // transform vmstat stream into kafka producer input
+  def transformVmstatForKafkaWriter(row: Row):String = {
+    val rowMap: Map[String, AnyVal] = row.getValuesMap(row.schema.fieldNames)
+    s"${rowMap("topic")}|${rowMap("time")}|${rowMap("r")}|${rowMap("b")}|${rowMap("swpd")}|${rowMap("buff")}|${rowMap("cache")}|${rowMap("si")}|" +
+      s"${rowMap("so")}|${rowMap("bi")}|${rowMap("bo")}|${rowMap("in_val")}|${rowMap("cs")}|${rowMap("us")}|${rowMap("sy")}|${rowMap("id")}|${rowMap("wa")}|" +
+      s"${rowMap("st")}"
+  }
+
   // transform tweet stream into structured stream
   def transformTweetStream (session: SparkSession, source: sql.DataFrame):sql.DataFrame = {
     import session.implicits._
@@ -69,6 +77,12 @@ object TransformClass extends Serializable {
         'split_value(5) alias "is_truncated",
         'split_value(6) alias "is_rt",
         'split_value(7) alias "tweet_text")
+  }
+
+  // transform tweet stream into kafka producer input
+  def transformTweetStreamForKafkaWriter (row: Row):String = {
+    val rowMap: Map[String, AnyVal] = row.getValuesMap(row.schema.fieldNames)
+    s"${rowMap("tweet_time")}|${rowMap("user_id")}|${rowMap("full_name")}|${rowMap("tweet_id")}|${rowMap("tweet_source")}|${rowMap("is_truncated")}|${rowMap("is_rt")}|${rowMap("tweet_text")}"
   }
 
   // transform covid19 batch data into structured stream

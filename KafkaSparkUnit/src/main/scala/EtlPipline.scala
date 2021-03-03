@@ -13,12 +13,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
   limitations under the License.
 */
-import com.kafka.spark.oop.pipelineCollections.PipelineCollect.{Covid19ToConsolePipeline, TweetToConsolePipeline, VmstatToConsolePipleline}
+import com.kafka.spark.oop.pipelineCollections.PipelineCollect.{Covid19ToConsolePipeline, TweetToConsolePipeline, TweetToKafkaPipeline, VmstatToConsolePipleline, VmstatToKafkaPipleline}
 import com.kafka.spark.oop.pipelineDev.projectUtils.extractProps
 
 import java.security.InvalidParameterException
 
-object EltPipeline extends Serializable {
+object EtlPipeline extends Serializable {
 
   def main(args: Array[String]): Unit = {
 
@@ -40,6 +40,19 @@ object EltPipeline extends Serializable {
      - run DAG "covid19_data_pipeline.py " in Apache Airflow to start to source
     */
     else if(configMap("pipeline.source")==("covid") && configMap("pipeline.sink")==("console")) Covid19ToConsolePipeline(configMap).load
+
+
+    /*
+     - elt pipeline: vmstat => flume => kafka producer => spark structured stream => kafka producer
+     - run "start-vmstats-with-flume.sh" to start to source
+    */
+    else if(configMap("pipeline.source")==("vmstat") && configMap("pipeline.sink")==("kafka")) VmstatToKafkaPipleline(configMap).load
+    /*
+     - elt pipeline: tweet_stream => flume => kafka producer => spark structured stream => console
+     - run "start-tweetStream-to-kafkaProducer.sh" to start to source
+    */
+    else if(configMap("pipeline.source")==("tweet") && configMap("pipeline.sink")==("kafka")) TweetToKafkaPipeline(configMap).load
+
     else throw new InvalidParameterException("invalid properties in the pipline selection")
 
   }
