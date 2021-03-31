@@ -15,7 +15,7 @@
 * [Contact](#contact)
 
 ### About The Project
-This project is updated from [Stream Data Pipeline with Flume Kafka StructureStream](https://github.com/mlmaster1995/Flume_Kafka_StructureStream_ELT) 
+This project is updated from [Basic Data Pipline with Spark Structred Streaming](https://github.com/mlmaster1995/Flume_Kafka_StructureStream_ELT) 
 , but this work is developed with newer version of Apache Kafka, Spark, Flume, Airflow. The whole project is developed and tested in the centOS7 VM configured with all technologies
 as [Built With](#built-with).
 
